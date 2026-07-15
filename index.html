@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK SAPHIR — Haute Joaillerie</title>
+  <meta name="description" content="BLACK SAPHIR — Maison de haute joaillerie. Diamants, or et pièces d'exception.">
+  <meta property="og:title" content="BLACK SAPHIR — Haute Joaillerie">
+  <meta property="og:image" content="assets/img/poster.webp">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='32,4 60,32 32,60 4,32' fill='%23c6a55c'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-lang="fr">
+
+  <!-- ══════════ PRELOADER ══════════ -->
+  <div id="preloader">
+    <div class="pre-inner">
+      <div class="pre-logo">
+        <span class="pre-word">BLACK</span>
+        <span class="pre-gem">◆</span>
+        <span class="pre-word">SAPHIR</span>
+      </div>
+      <div class="pre-line"><div class="pre-line-fill" id="pre-fill"></div></div>
+      <div class="pre-count" id="pre-count">0%</div>
+      <button id="enter-btn" class="enter-btn" disabled>
+        <span data-i18n="enter">Entrer avec le son</span>
+        <span class="enter-note">♪</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════ CURSOR ══════════ -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="site-head" id="site-head">
+    <a class="brand" href="#hero">BLACK <span class="brand-gem">◆</span> SAPHIR</a>
+    <nav class="head-nav">
+      <a href="#film" data-i18n="nav_film">Le Film</a>
+      <a href="#collection" data-i18n="nav_collection">La Collection</a>
+      <a href="#maison" data-i18n="nav_maison">La Maison</a>
+      <a href="#visite" data-i18n="nav_visite">Nous Trouver</a>
+    </nav>
+    <div class="head-tools">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang-btn="fr">FR</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang-btn="en">EN</button>
+      </div>
+      <button class="sound-toggle" id="sound-toggle" aria-label="Sound">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══════════ HERO ══════════ -->
+    <section id="hero">
+      <canvas id="gem-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <p class="hero-over" data-i18n="hero_over">Haute Joaillerie</p>
+        <h1 class="hero-title" id="hero-title">BLACK&nbsp;SAPHIR</h1>
+        <p class="hero-sub" data-i18n="hero_sub">L'éclat n'attend que vous.</p>
+      </div>
+      <div class="scroll-cue">
+        <span data-i18n="scroll">Faites défiler</span>
+        <span class="cue-line"></span>
+      </div>
+    </section>
+
+    <!-- ══════════ FILM (scroll-scrubbed frames) ══════════ -->
+    <section id="film">
+      <div class="film-sticky">
+        <canvas id="film-canvas"></canvas>
+        <div class="film-caption" data-cap="0">
+          <h2 data-i18n="cap1_t">Tout commence par une pierre</h2>
+          <p data-i18n="cap1_p">Un diamant taille brillant, choisi entre mille.</p>
+        </div>
+        <div class="film-caption" data-cap="1">
+          <h2 data-i18n="cap2_t">L'or répond à son appel</h2>
+          <p data-i18n="cap2_p">Une chaîne d'or 18 carats, forgée à la main.</p>
+        </div>
+        <div class="film-caption" data-cap="2">
+          <h2 data-i18n="cap3_t">L'union parfaite</h2>
+          <p data-i18n="cap3_p">Le Solitaire BLACK SAPHIR. Une pièce. Une vie.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ MARQUEE ══════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-inner">
+        <span>BLACK SAPHIR ◆ HAUTE JOAILLERIE ◆ OR 18 CARATS ◆ DIAMANTS CERTIFIÉS ◆ PIÈCES D'EXCEPTION ◆&nbsp;</span>
+        <span>BLACK SAPHIR ◆ HAUTE JOAILLERIE ◆ OR 18 CARATS ◆ DIAMANTS CERTIFIÉS ◆ PIÈCES D'EXCEPTION ◆&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- ══════════ COLLECTION ══════════ -->
+    <section id="collection">
+      <div class="sect-head reveal">
+        <p class="sect-over" data-i18n="col_over">La Collection</p>
+        <h2 class="sect-title" data-i18n="col_title">Pièces d'exception</h2>
+        <p class="swipe-hint">
+          <span class="swipe-arrow">←</span>
+          <span data-i18n="col_hint">Glissez pour explorer — touchez pour découvrir</span>
+          <span class="swipe-arrow">→</span>
+        </p>
+      </div>
+      <div class="carousel" id="carousel">
+        <div class="carousel-track" id="carousel-track"><!-- cards injected by JS --></div>
+      </div>
+      <div class="carousel-foot">
+        <button class="car-arrow" id="car-prev" aria-label="Previous">←</button>
+        <div class="car-progress"><div class="car-progress-fill" id="car-fill"></div></div>
+        <button class="car-arrow" id="car-next" aria-label="Next">→</button>
+      </div>
+    </section>
+
+    <!-- ══════════ MAISON ══════════ -->
+    <section id="maison">
+      <div class="maison-inner">
+        <p class="sect-over reveal" data-i18n="maison_over">La Maison</p>
+        <h2 class="maison-quote reveal" data-i18n="maison_quote">« Un bijou n'est pas un objet. C'est un instant devenu éternel. »</h2>
+        <div class="maison-cols">
+          <p class="reveal" data-i18n="maison_p1">Née d'une passion pour la lumière, la maison BLACK SAPHIR sélectionne chaque pierre à la main et confie l'or à des artisans dont le savoir-faire se transmet depuis des générations.</p>
+          <p class="reveal" data-i18n="maison_p2">Chaque création est unique, numérotée et accompagnée de son certificat. Ici, le luxe ne se montre pas — il se ressent.</p>
+        </div>
+        <div class="maison-stats reveal">
+          <div class="stat"><span class="stat-num">18k</span><span class="stat-lab" data-i18n="stat1">Or certifié</span></div>
+          <div class="stat"><span class="stat-num">GIA</span><span class="stat-lab" data-i18n="stat2">Diamants certifiés</span></div>
+          <div class="stat"><span class="stat-num">1/1</span><span class="stat-lab" data-i18n="stat3">Pièces uniques</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ VISITE / MAP ══════════ -->
+    <section id="visite">
+      <div class="sect-head reveal">
+        <p class="sect-over" data-i18n="vis_over">Nous Trouver</p>
+        <h2 class="sect-title" data-i18n="vis_title">La Boutique</h2>
+      </div>
+      <div class="visite-grid">
+        <div class="visite-info reveal">
+          <!-- TODO: replace with the real boutique address -->
+          <p class="vis-line vis-strong">BLACK SAPHIR</p>
+          <p class="vis-line" data-i18n="vis_addr">Adresse de la boutique — à confirmer</p>
+          <p class="vis-line">Paris, France</p>
+          <div class="vis-sep"></div>
+          <p class="vis-line" data-i18n="vis_hours">Lun – Sam · 10h00 – 19h00</p>
+          <p class="vis-line"><a href="tel:+33100000000">+33 1 00 00 00 00</a></p>
+          <p class="vis-line"><a href="mailto:contact@blacksaphir.com">contact@blacksaphir.com</a></p>
+          <a class="gold-btn" href="https://maps.google.com/?q=Place+Vend%C3%B4me,+Paris" target="_blank" rel="noopener" data-i18n="vis_btn">Itinéraire</a>
+        </div>
+        <div class="map-frame reveal">
+          <!-- TODO: replace the q= query with the real boutique address -->
+          <iframe
+            title="BLACK SAPHIR — Google Maps"
+            src="https://www.google.com/maps?q=Place+Vend%C3%B4me,+75001+Paris&output=embed&hl=fr"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="site-foot">
+    <div class="foot-brand">BLACK <span class="brand-gem">◆</span> SAPHIR</div>
+    <p class="foot-tag" data-i18n="foot_tag">Haute Joaillerie — Paris</p>
+    <div class="foot-links">
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">TikTok</a>
+      <a href="mailto:contact@blacksaphir.com">Email</a>
+    </div>
+    <p class="foot-legal">© 2026 BLACK SAPHIR — <span data-i18n="foot_rights">Tous droits réservés</span></p>
+  </footer>
+
+  <!-- ══════════ PRODUCT MODAL ══════════ -->
+  <div id="product-modal" class="modal" aria-hidden="true">
+    <div class="modal-veil" id="modal-veil"></div>
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div class="modal-visual">
+        <img id="modal-img" src="" alt="">
+        <canvas id="modal-3d"></canvas>
+        <button id="modal-3d-btn" class="chip-btn"><span data-i18n="view3d">Vue 3D interactive</span> ◆</button>
+      </div>
+      <div class="modal-info">
+        <p class="modal-over" data-i18n="modal_over">BLACK SAPHIR — Pièce d'exception</p>
+        <h3 id="modal-name"></h3>
+        <p class="modal-price" id="modal-price"></p>
+        <div class="vis-sep"></div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <ul class="modal-details" id="modal-details"></ul>
+        <a class="gold-btn" id="modal-cta" href="mailto:contact@blacksaphir.com?subject=Demande%20—%20BLACK%20SAPHIR" data-i18n="modal_cta">Réserver un rendez-vous privé</a>
+      </div>
+    </div>
+  </div>
+
+  <audio id="ambience" src="assets/audio/ambience.mp3" loop preload="auto"></audio>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/addons/"
+    }
+  }
+  </script>
+  <script type="module" src="js/three-scene.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
