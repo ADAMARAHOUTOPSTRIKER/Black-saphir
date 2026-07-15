@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000"><defs>
+    <radialGradient id="silk" cx="45%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#ece0cb"/>
+      <stop offset="55%" stop-color="#ddccb1"/>
+      <stop offset="100%" stop-color="#cbb897"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset="40%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#8a7a5e" stop-opacity=".12"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity=".10"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6ead0"/>
+      <stop offset="35%" stop-color="#e0c074"/>
+      <stop offset="60%" stop-color="#c39b48"/>
+      <stop offset="100%" stop-color="#a17a34"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b6893c"/>
+      <stop offset="50%" stop-color="#eacf83"/>
+      <stop offset="100%" stop-color="#b6893c"/>
+    </linearGradient>
+    <radialGradient id="dia" cx="42%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#eef2f6"/>
+      <stop offset="100%" stop-color="#c9d3dd"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="tiny" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="1.1"/>
+    </filter>
+  </defs>
+  <rect width="800" height="1000" fill="url(#silk)"/>
+  <rect width="800" height="1000" fill="url(#sheen)"/>
+  <ellipse cx="250" cy="250" rx="360" ry="150" fill="#fff" opacity="0.10" filter="url(#soft)"/>
+  <ellipse cx="600" cy="780" rx="320" ry="150" fill="#7d6c50" opacity="0.10" filter="url(#soft)"/>
+<path d="M 250,90 Q 250,420 250,634" fill="none" stroke="url(#goldSoft)" stroke-width="4"/>
+<path d="M 550,90 Q 550,420 550,634" fill="none" stroke="url(#goldSoft)" stroke-width="4"/>
+<path d="M 250,90 Q 250,420 250,634" fill="none" stroke="#7a5c26" stroke-width="4" stroke-dasharray="1.5 6" opacity="0.45"/>
+<path d="M 550,90 Q 550,420 550,634" fill="none" stroke="#7a5c26" stroke-width="4" stroke-dasharray="1.5 6" opacity="0.45"/>
+<ellipse cx="410" cy="695" rx="150" ry="30" fill="#6f5f45" opacity="0.30" filter="url(#soft)"/>
+<g transform="translate(300.0,640.0)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="300.0" cy="623.0" r="2.6" fill="url(#gold)"/>
+<circle cx="300.0" cy="657.0" r="2.6" fill="url(#gold)"/>
+<g transform="translate(320.0,648.2)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="320.0" cy="631.2" r="2.6" fill="url(#gold)"/>
+<circle cx="320.0" cy="665.2" r="2.6" fill="url(#gold)"/>
+<g transform="translate(340.0,653.3)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="340.0" cy="636.3" r="2.6" fill="url(#gold)"/>
+<circle cx="340.0" cy="670.3" r="2.6" fill="url(#gold)"/>
+<g transform="translate(360.0,653.3)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="360.0" cy="636.3" r="2.6" fill="url(#gold)"/>
+<circle cx="360.0" cy="670.3" r="2.6" fill="url(#gold)"/>
+<g transform="translate(380.0,648.2)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="380.0" cy="631.2" r="2.6" fill="url(#gold)"/>
+<circle cx="380.0" cy="665.2" r="2.6" fill="url(#gold)"/>
+<g transform="translate(400.0,640.0)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="400.0" cy="623.0" r="2.6" fill="url(#gold)"/>
+<circle cx="400.0" cy="657.0" r="2.6" fill="url(#gold)"/>
+<g transform="translate(420.0,631.8)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="420.0" cy="614.8" r="2.6" fill="url(#gold)"/>
+<circle cx="420.0" cy="648.8" r="2.6" fill="url(#gold)"/>
+<g transform="translate(440.0,626.7)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="440.0" cy="609.7" r="2.6" fill="url(#gold)"/>
+<circle cx="440.0" cy="643.7" r="2.6" fill="url(#gold)"/>
+<g transform="translate(460.0,626.7)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="460.0" cy="609.7" r="2.6" fill="url(#gold)"/>
+<circle cx="460.0" cy="643.7" r="2.6" fill="url(#gold)"/>
+<g transform="translate(480.0,631.8)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="480.0" cy="614.8" r="2.6" fill="url(#gold)"/>
+<circle cx="480.0" cy="648.8" r="2.6" fill="url(#gold)"/>
+<g transform="translate(500.0,640.0)"><rect x="-6.0" y="-17.0" width="12" height="34" rx="2" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><line x1="-4.0" y1="0" x2="4.0" y2="0" stroke="#fff" stroke-width="1" opacity="0.7"/></g>
+<circle cx="500.0" cy="623.0" r="2.6" fill="url(#gold)"/>
+<circle cx="500.0" cy="657.0" r="2.6" fill="url(#gold)"/>
+</svg>

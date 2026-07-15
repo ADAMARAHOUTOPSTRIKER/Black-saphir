@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000"><defs>
+    <radialGradient id="silk" cx="45%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#ece0cb"/>
+      <stop offset="55%" stop-color="#ddccb1"/>
+      <stop offset="100%" stop-color="#cbb897"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset="40%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="70%" stop-color="#8a7a5e" stop-opacity=".12"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity=".10"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6ead0"/>
+      <stop offset="35%" stop-color="#e0c074"/>
+      <stop offset="60%" stop-color="#c39b48"/>
+      <stop offset="100%" stop-color="#a17a34"/>
+    </linearGradient>
+    <linearGradient id="goldSoft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b6893c"/>
+      <stop offset="50%" stop-color="#eacf83"/>
+      <stop offset="100%" stop-color="#b6893c"/>
+    </linearGradient>
+    <radialGradient id="dia" cx="42%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#eef2f6"/>
+      <stop offset="100%" stop-color="#c9d3dd"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="tiny" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="1.1"/>
+    </filter>
+  </defs>
+  <rect width="800" height="1000" fill="url(#silk)"/>
+  <rect width="800" height="1000" fill="url(#sheen)"/>
+  <ellipse cx="250" cy="250" rx="360" ry="150" fill="#fff" opacity="0.10" filter="url(#soft)"/>
+  <ellipse cx="600" cy="780" rx="320" ry="150" fill="#7d6c50" opacity="0.10" filter="url(#soft)"/>
+<ellipse cx="300" cy="600" rx="200" ry="42" fill="#6f5f45" opacity="0.30" filter="url(#soft)"/>
+<rect x="338" y="491" width="150" height="18" rx="9" fill="url(#gold)"/>
+<circle cx="480" cy="500" r="34" fill="url(#gold)" stroke="#9c7734" stroke-width="1.5"/>
+<ellipse cx="470" cy="490" rx="12" ry="7" fill="#fbf1d8" opacity="0.6"/>
+<circle cx="515" cy="500" r="10" fill="url(#goldSoft)"/>
+<circle cx="330" cy="500" r="0"/><g transform="translate(274.83924724752944,456.9036967272039) rotate(-52)"><path d="M -34,0 Q 0,-15 34,0 Q 0,15 -34,0 Z" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><path d="M -18.700000000000003,0 Q 0,-7.5 18.700000000000003,0" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/></g>
+<circle cx="248.0" cy="436.0" r="4.5" fill="url(#gold)"/>
+<circle cx="330" cy="500" r="0"/><g transform="translate(299.3140197247646,437.0844167590583) rotate(-26)"><path d="M -34,0 Q 0,-15 34,0 Q 0,15 -34,0 Z" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><path d="M -18.700000000000003,0 Q 0,-7.5 18.700000000000003,0" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/></g>
+<circle cx="284.4" cy="406.5" r="4.5" fill="url(#gold)"/>
+<circle cx="330" cy="500" r="0"/><g transform="translate(330.0,430.0) rotate(0)"><path d="M -34,0 Q 0,-15 34,0 Q 0,15 -34,0 Z" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><path d="M -18.700000000000003,0 Q 0,-7.5 18.700000000000003,0" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/></g>
+<circle cx="330.0" cy="396.0" r="4.5" fill="url(#gold)"/>
+<circle cx="330" cy="500" r="0"/><g transform="translate(360.6859802752354,437.0844167590583) rotate(26)"><path d="M -34,0 Q 0,-15 34,0 Q 0,15 -34,0 Z" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><path d="M -18.700000000000003,0 Q 0,-7.5 18.700000000000003,0" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/></g>
+<circle cx="375.6" cy="406.5" r="4.5" fill="url(#gold)"/>
+<circle cx="330" cy="500" r="0"/><g transform="translate(385.16075275247056,456.9036967272039) rotate(52)"><path d="M -34,0 Q 0,-15 34,0 Q 0,15 -34,0 Z" fill="url(#dia)" stroke="#b9c4d0" stroke-width="0.6"/><path d="M -18.700000000000003,0 Q 0,-7.5 18.700000000000003,0" fill="none" stroke="#fff" stroke-width="1" opacity="0.8"/></g>
+<circle cx="412.0" cy="436.0" r="4.5" fill="url(#gold)"/>
+<circle cx="330" cy="500" r="10" fill="url(#gold)"/>
+</svg>

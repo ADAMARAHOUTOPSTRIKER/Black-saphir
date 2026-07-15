@@ -67,12 +67,14 @@ const I18N = {
 let LANG = localStorage.getItem("bs-lang") || "fr";
 
 /* ─────────── Product catalogue ───────────
-   The 4 pieces of the collection. IMPORTANT: `img` currently points to
-   interim crops from the brand film — swap each for the real product
-   photo (assets/products/<id>.webp, 4:5 ratio) when the files arrive. */
+   `img` points at the real product photos hosted on the CDN. If a CDN link
+   ever changes, the card falls back to `fallback` (a local film crop) so the
+   site never shows a broken image. To make the photos permanent, download
+   them and commit to assets/products/, then point `img` at the local path. */
+const CDN = "https://d2ol7oe51mr4n9.cloudfront.net/user_3GHPoA15zVprBfRKPajGW3fs5DR";
 const PRODUCTS = [
   {
-    id: "jonc-eternite", img: "assets/products/cercle.webp", price: 2900,
+    id: "jonc-eternite", img: `${CDN}/2dcbc1e9-3d61-4af7-baa7-843825e769e7.png`, fallback: "assets/products/jonc-eternite.svg", price: 2900,
     name: { fr: "Jonc Éternité", en: "Eternity Bangle" },
     cat: { fr: "Bracelet — diamants pavés", en: "Bracelet — pavé diamonds" },
     desc: {
@@ -82,7 +84,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants ronds, serti grain", en: "Round diamonds, bead set" } },
   },
   {
-    id: "couronne-marquises", img: "assets/products/diamant.webp", price: 1450,
+    id: "couronne-marquises", img: `${CDN}/e4480694-ebb8-4434-8e62-6e3ed4f988f0.png`, fallback: "assets/products/couronne-marquises.svg", price: 1450,
     name: { fr: "Couronne de Marquises", en: "Marquise Crown" },
     cat: { fr: "Boucle d'oreille — puce", en: "Earring — stud" },
     desc: {
@@ -92,7 +94,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants taille marquise", en: "Marquise-cut diamonds" } },
   },
   {
-    id: "croisee-etoiles", img: "assets/products/eclat.webp", price: 1900,
+    id: "croisee-etoiles", img: `${CDN}/8e8ca963-e5ed-4f17-8fc8-751738fadf25.png`, fallback: "assets/products/croisee-etoiles.svg", price: 1900,
     name: { fr: "Croisée d'Étoiles", en: "Starlight Crossing" },
     cat: { fr: "Bague — croisement pavé", en: "Ring — pavé crossover" },
     desc: {
@@ -102,7 +104,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants ronds pavés", en: "Pavé-set round diamonds" } },
   },
   {
-    id: "vague-baguette", img: "assets/products/solitaire.webp", price: 2600,
+    id: "vague-baguette", img: `${CDN}/7116b162-f3d3-4d89-acd6-931b7d6a2654.png`, fallback: "assets/products/vague-baguette.svg", price: 2600,
     name: { fr: "Vague Baguette", en: "Baguette Wave" },
     cat: { fr: "Collier — barre de diamants", en: "Necklace — diamond bar" },
     desc: {
@@ -279,7 +281,8 @@ function renderCards() {
   track.innerHTML = PRODUCTS.map((p, i) => `
     <article class="product-card" data-idx="${i}">
       <div class="card-visual">
-        <img src="${p.img}" alt="${p.name[LANG]}" draggable="false" loading="lazy">
+        <img src="${p.img}" alt="${p.name[LANG]}" draggable="false" loading="lazy"
+             onerror="this.onerror=null;this.src='${p.fallback}'">
         <span class="card-shine"></span>
       </div>
       <div class="card-info">
@@ -356,6 +359,7 @@ let currentProduct = null;
 function openModal(idx) {
   const p = PRODUCTS[idx];
   currentProduct = p;
+  modalImg.onerror = () => { modalImg.onerror = null; modalImg.src = p.fallback; };
   modalImg.src = p.img;
   modalImg.alt = p.name[LANG];
   $("#modal-name").textContent = p.name[LANG];
