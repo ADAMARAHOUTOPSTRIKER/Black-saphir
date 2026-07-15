@@ -67,99 +67,49 @@ const I18N = {
 let LANG = localStorage.getItem("bs-lang") || "fr";
 
 /* ─────────── Product catalogue ───────────
-   NOTE: visuals are interim crops from the brand film.
-   Swap `img` for real product photography when available
-   (assets/products/*.webp, 720×900 or any 4:5 image). */
+   The 4 pieces of the collection. IMPORTANT: `img` currently points to
+   interim crops from the brand film — swap each for the real product
+   photo (assets/products/<id>.webp, 4:5 ratio) when the files arrive. */
 const PRODUCTS = [
   {
-    id: "solitaire", img: "assets/products/solitaire.webp", price: null,
-    name: { fr: "Le Solitaire", en: "The Solitaire" },
-    cat: { fr: "Collier — pièce signature", en: "Necklace — signature piece" },
+    id: "jonc-eternite", img: "assets/products/cercle.webp", price: 2900,
+    name: { fr: "Jonc Éternité", en: "Eternity Bangle" },
+    cat: { fr: "Bracelet — diamants pavés", en: "Bracelet — pavé diamonds" },
     desc: {
-      fr: "La pièce du film. Un diamant taille brillant serti sur une chaîne d'or jaune 18 carats forgée à la main. L'union parfaite de la pierre et du métal, née sous vos yeux.",
-      en: "The piece from the film. A brilliant-cut diamond set on a hand-forged 18k yellow gold chain. The perfect union of stone and metal, born before your eyes.",
+      fr: "Un jonc d'or jaune 18 carats serti d'une ligne continue de diamants, retenu par sa chaînette de sécurité. La lumière en orbite autour du poignet.",
+      en: "An 18k yellow gold bangle set with a continuous line of diamonds, secured by its safety chain. Light in orbit around the wrist.",
     },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamant taille brillant", en: "Brilliant-cut diamond" } },
+    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants ronds, serti grain", en: "Round diamonds, bead set" } },
   },
   {
-    id: "trinite", img: "assets/products/or.webp", price: 4800,
-    name: { fr: "Trinité d'Or", en: "Golden Trinity" },
-    cat: { fr: "Manchette — trois anneaux", en: "Cuff — three bands" },
+    id: "couronne-marquises", img: "assets/products/diamant.webp", price: 1450,
+    name: { fr: "Couronne de Marquises", en: "Marquise Crown" },
+    cat: { fr: "Boucle d'oreille — puce", en: "Earring — stud" },
     desc: {
-      fr: "Trois anneaux d'or poli qui s'enlacent sans jamais se toucher. Une manchette architecturale, à la fois puissante et aérienne.",
-      en: "Three polished gold bands that embrace without ever touching. An architectural cuff, at once powerful and weightless.",
+      fr: "Cinq diamants taille marquise déployés en éventail, comme une aile de lumière posée sur le lobe. Se porte seule ou en paire.",
+      en: "Five marquise-cut diamonds fanned like a wing of light resting on the lobe. Worn alone or as a pair.",
     },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
+    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants taille marquise", en: "Marquise-cut diamonds" } },
   },
   {
-    id: "carre", img: "assets/products/diamant.webp", price: 7200,
-    name: { fr: "Carré Lumière", en: "Square of Light" },
-    cat: { fr: "Bracelet — diamants", en: "Bracelet — diamonds" },
+    id: "croisee-etoiles", img: "assets/products/eclat.webp", price: 1900,
+    name: { fr: "Croisée d'Étoiles", en: "Starlight Crossing" },
+    cat: { fr: "Bague — croisement pavé", en: "Ring — pavé crossover" },
     desc: {
-      fr: "Trois carrés de diamants baguette sertis sur un jonc fin. La géométrie au service de la lumière.",
-      en: "Three squares of baguette diamonds set on a slender band. Geometry in the service of light.",
+      fr: "Deux anneaux qui se croisent sans jamais se refermer — l'un d'or poli, l'autre pavé de diamants. Une géométrie libre, un éclat permanent.",
+      en: "Two bands crossing without ever closing — one in polished gold, the other pavéd with diamonds. Free geometry, permanent brilliance.",
     },
-    details: { metal: { fr: "Or blanc 18k", en: "18k white gold" }, stone: { fr: "Diamants baguette", en: "Baguette diamonds" } },
+    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants ronds pavés", en: "Pavé-set round diamonds" } },
   },
   {
-    id: "maillon", img: "assets/products/maillon.webp", price: 5400,
-    name: { fr: "Maillon Royal", en: "Royal Link" },
-    cat: { fr: "Bracelet — chaîne d'ancre", en: "Bracelet — anchor chain" },
+    id: "vague-baguette", img: "assets/products/solitaire.webp", price: 2600,
+    name: { fr: "Vague Baguette", en: "Baguette Wave" },
+    cat: { fr: "Collier — barre de diamants", en: "Necklace — diamond bar" },
     desc: {
-      fr: "Une chaîne d'ancre aux maillons généreux, fermée par un fermoir bâton sculptural. L'audace du poids, la grâce du poli miroir.",
-      en: "An anchor chain of generous links, closed by a sculptural toggle clasp. The audacity of weight, the grace of a mirror polish.",
+      fr: "Neuf diamants taille baguette sertis en ondulation sur une chaîne d'or forcée. Une vague de lumière suspendue à la clavicule.",
+      en: "Nine baguette-cut diamonds set in a gentle wave on a gold belcher chain. A wave of light suspended at the collarbone.",
     },
-    details: { metal: { fr: "Or jaune 18k massif", en: "Solid 18k yellow gold" }, stone: { fr: "—", en: "—" } },
-  },
-  {
-    id: "clous", img: "assets/products/eclat.webp", price: 3900,
-    name: { fr: "Clous d'Éclat", en: "Studs of Brilliance" },
-    cat: { fr: "Jonc — clouté", en: "Bangle — studded" },
-    desc: {
-      fr: "Un jonc fin hérissé de clous d'or taillés en pointe. Le bijou des caractères affirmés.",
-      en: "A slender bangle bristling with pointed gold studs. A jewel for assertive characters.",
-    },
-    details: { metal: { fr: "Or rose 18k", en: "18k rose gold" }, stone: { fr: "—", en: "—" } },
-  },
-  {
-    id: "tresse", img: "assets/products/cercle.webp", price: 4200,
-    name: { fr: "Tresse Impériale", en: "Imperial Braid" },
-    cat: { fr: "Joncs — trio texturé", en: "Bangles — textured trio" },
-    desc: {
-      fr: "Trois joncs finement tressés, portés ensemble ou séparément. Le quotidien, anobli.",
-      en: "Three finely braided bangles, worn together or apart. The everyday, ennobled.",
-    },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
-  },
-  {
-    id: "sautoir", img: "assets/products/chaine.webp", price: 6800,
-    name: { fr: "Sautoir Céleste", en: "Celestial Lariat" },
-    cat: { fr: "Collier — sautoir", en: "Necklace — lariat" },
-    desc: {
-      fr: "Un sautoir fluide ponctué de gouttes d'or, qui suit chaque mouvement comme une seconde peau. Se porte long, croisé ou noué.",
-      en: "A fluid lariat punctuated with drops of gold, following every movement like a second skin. Worn long, crossed or knotted.",
-    },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
-  },
-  {
-    id: "fleur", img: "assets/products/pendentif.webp", price: 9600,
-    name: { fr: "Fleur d'Émeraude", en: "Emerald Blossom" },
-    cat: { fr: "Collier — filigrane", en: "Necklace — filigree" },
-    desc: {
-      fr: "Un pendentif floral en filigrane d'or, cœur d'émeraude cabochon. Des heures de patience d'atelier pour une dentelle de métal.",
-      en: "A floral pendant in gold filigree with a cabochon emerald heart. Hours of atelier patience for a lace of metal.",
-    },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Émeraude cabochon", en: "Cabochon emerald" } },
-  },
-  {
-    id: "jardin", img: "assets/products/lumiere.webp", price: 7800,
-    name: { fr: "Jardin Suspendu", en: "Hanging Garden" },
-    cat: { fr: "Boucles d'oreilles — chandelier", en: "Earrings — chandelier" },
-    desc: {
-      fr: "Des boucles chandelier en filigrane, gouttes d'émeraude en pampilles. Elles dansent à chaque pas.",
-      en: "Chandelier earrings in filigree, emerald drops as pendants. They dance with every step.",
-    },
-    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Émeraudes", en: "Emeralds" } },
+    details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamants taille baguette", en: "Baguette-cut diamonds" } },
   },
 ];
 
