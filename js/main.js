@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════
    BLACK SAPHIR — main.js
    Preloader · i18n · film scroll-scrub · carousel ·
-   product modal · ambience sound · micro-interactions
+   product modal · micro-interactions
    ═══════════════════════════════════════════════════ */
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ─────────── i18n dictionary ─────────── */
 const I18N = {
   fr: {
-    enter: "Entrer avec le son",
+    enter: "Entrer",
     nav_film: "Le Film", nav_collection: "La Collection", nav_maison: "La Maison", nav_visite: "Nous Trouver",
     hero_over: "Haute Joaillerie",
     hero_sub: "L'éclat n'attend que vous.",
@@ -36,7 +36,7 @@ const I18N = {
     made_hand: "Façonné à la main", cert_incl: "Inclus",
   },
   en: {
-    enter: "Enter with sound",
+    enter: "Enter",
     nav_film: "The Film", nav_collection: "The Collection", nav_maison: "The House", nav_visite: "Find Us",
     hero_over: "High Jewelry",
     hero_sub: "Brilliance awaits you.",
@@ -202,8 +202,6 @@ function preloadFrames(onProgress, onDone) {
 
 /* ─────────── Preloader / enter ─────────── */
 const preFill = $("#pre-fill"), preCount = $("#pre-count"), enterBtn = $("#enter-btn"), preloader = $("#preloader");
-const ambience = $("#ambience"), soundToggle = $("#sound-toggle");
-ambience.volume = 0.4;
 
 preloadFrames(
   (p) => {
@@ -217,24 +215,22 @@ preloadFrames(
   }
 );
 
-/* Sound is bound to the scroll-through: it plays only while the visitor
-   is inside the film section (and stops the moment they leave it). */
-let soundOn = false;    // the visitor's wish (toggle / enter button)
-let filmActive = true;  // inside the film section? (film is the first page)
-function syncSound() {
-  const play = soundOn && filmActive;
-  if (play) { ambience.play().catch(() => {}); } else { ambience.pause(); }
-  soundToggle.classList.toggle("playing", play);
-}
-soundToggle.addEventListener("click", () => { soundOn = !soundOn; syncSound(); });
-
 enterBtn.addEventListener("click", () => {
   preloader.classList.add("done");
   document.body.classList.add("entered");
-  soundOn = true; // user gesture → autoplay allowed
-  syncSound();
   introTimeline();
 });
+
+/* Optional opening picture: if assets/img/opening.webp exists it becomes
+   the backdrop of the brand opening (replacing the film's first frame). */
+(function loadOpeningImage() {
+  const img = new Image();
+  img.src = "assets/img/opening.webp";
+  img.onload = () => {
+    const bg = $("#film-brand-bg");
+    if (bg) { bg.style.backgroundImage = `url(${img.src})`; bg.classList.add("on"); }
+  };
+})();
 
 /* ─────────── Hero intro ─────────── */
 function introTimeline() {
@@ -279,8 +275,6 @@ ScrollTrigger.create({
   start: "top top",
   end: "bottom bottom",
   onUpdate: (self) => { targetFrame = self.progress * (FRAME_COUNT - 1); },
-  // sound starts with the scroll-through and ends with it
-  onToggle: (self) => { filmActive = self.isActive; syncSound(); },
 });
 
 /* brand name opens the film, then dissolves as the story begins */
