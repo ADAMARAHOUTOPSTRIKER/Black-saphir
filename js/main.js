@@ -29,12 +29,11 @@ const I18N = {
     vis_hours: "Lun – Sam · 10h00 – 19h00",
     vis_btn: "Itinéraire",
     foot_tag: "Haute Joaillerie — Paris", foot_rights: "Tous droits réservés",
-    view3d: "Vue 3D interactive", view_photo: "Voir la photo",
     modal_over: "BLACK SAPHIR — Pièce d'exception",
     modal_cta: "Réserver un rendez-vous privé",
     price_request: "Prix sur demande",
     d_metal: "Métal", d_stone: "Pierre", d_cert: "Certificat", d_made: "Fabrication",
-    made_hand: "Façonné à la main", cert_incl: "Inclus", tag3d: "3D",
+    made_hand: "Façonné à la main", cert_incl: "Inclus",
   },
   en: {
     enter: "Enter with sound",
@@ -57,12 +56,11 @@ const I18N = {
     vis_hours: "Mon – Sat · 10 AM – 7 PM",
     vis_btn: "Directions",
     foot_tag: "High Jewelry — Paris", foot_rights: "All rights reserved",
-    view3d: "Interactive 3D view", view_photo: "View photo",
     modal_over: "BLACK SAPHIR — Exceptional piece",
     modal_cta: "Book a private appointment",
     price_request: "Price on request",
     d_metal: "Metal", d_stone: "Stone", d_cert: "Certificate", d_made: "Craftsmanship",
-    made_hand: "Handcrafted", cert_incl: "Included", tag3d: "3D",
+    made_hand: "Handcrafted", cert_incl: "Included",
   },
 };
 
@@ -74,7 +72,7 @@ let LANG = localStorage.getItem("bs-lang") || "fr";
    (assets/products/*.webp, 720×900 or any 4:5 image). */
 const PRODUCTS = [
   {
-    id: "solitaire", img: "assets/products/solitaire.webp", price: null, model3d: "gem",
+    id: "solitaire", img: "assets/products/solitaire.webp", price: null,
     name: { fr: "Le Solitaire", en: "The Solitaire" },
     cat: { fr: "Collier — pièce signature", en: "Necklace — signature piece" },
     desc: {
@@ -84,7 +82,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Diamant taille brillant", en: "Brilliant-cut diamond" } },
   },
   {
-    id: "trinite", img: "assets/products/or.webp", price: 4800, model3d: "bangle-triple",
+    id: "trinite", img: "assets/products/or.webp", price: 4800,
     name: { fr: "Trinité d'Or", en: "Golden Trinity" },
     cat: { fr: "Manchette — trois anneaux", en: "Cuff — three bands" },
     desc: {
@@ -94,7 +92,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
   },
   {
-    id: "carre", img: "assets/products/diamant.webp", price: 7200, model3d: null,
+    id: "carre", img: "assets/products/diamant.webp", price: 7200,
     name: { fr: "Carré Lumière", en: "Square of Light" },
     cat: { fr: "Bracelet — diamants", en: "Bracelet — diamonds" },
     desc: {
@@ -104,7 +102,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or blanc 18k", en: "18k white gold" }, stone: { fr: "Diamants baguette", en: "Baguette diamonds" } },
   },
   {
-    id: "maillon", img: "assets/products/maillon.webp", price: 5400, model3d: null,
+    id: "maillon", img: "assets/products/maillon.webp", price: 5400,
     name: { fr: "Maillon Royal", en: "Royal Link" },
     cat: { fr: "Bracelet — chaîne d'ancre", en: "Bracelet — anchor chain" },
     desc: {
@@ -114,7 +112,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k massif", en: "Solid 18k yellow gold" }, stone: { fr: "—", en: "—" } },
   },
   {
-    id: "clous", img: "assets/products/eclat.webp", price: 3900, model3d: "bangle-stud",
+    id: "clous", img: "assets/products/eclat.webp", price: 3900,
     name: { fr: "Clous d'Éclat", en: "Studs of Brilliance" },
     cat: { fr: "Jonc — clouté", en: "Bangle — studded" },
     desc: {
@@ -124,7 +122,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or rose 18k", en: "18k rose gold" }, stone: { fr: "—", en: "—" } },
   },
   {
-    id: "tresse", img: "assets/products/cercle.webp", price: 4200, model3d: "bangle-twist",
+    id: "tresse", img: "assets/products/cercle.webp", price: 4200,
     name: { fr: "Tresse Impériale", en: "Imperial Braid" },
     cat: { fr: "Joncs — trio texturé", en: "Bangles — textured trio" },
     desc: {
@@ -134,7 +132,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
   },
   {
-    id: "sautoir", img: "assets/products/chaine.webp", price: 6800, model3d: null,
+    id: "sautoir", img: "assets/products/chaine.webp", price: 6800,
     name: { fr: "Sautoir Céleste", en: "Celestial Lariat" },
     cat: { fr: "Collier — sautoir", en: "Necklace — lariat" },
     desc: {
@@ -144,7 +142,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "—", en: "—" } },
   },
   {
-    id: "fleur", img: "assets/products/pendentif.webp", price: 9600, model3d: null,
+    id: "fleur", img: "assets/products/pendentif.webp", price: 9600,
     name: { fr: "Fleur d'Émeraude", en: "Emerald Blossom" },
     cat: { fr: "Collier — filigrane", en: "Necklace — filigree" },
     desc: {
@@ -154,7 +152,7 @@ const PRODUCTS = [
     details: { metal: { fr: "Or jaune 18k", en: "18k yellow gold" }, stone: { fr: "Émeraude cabochon", en: "Cabochon emerald" } },
   },
   {
-    id: "jardin", img: "assets/products/lumiere.webp", price: 7800, model3d: null,
+    id: "jardin", img: "assets/products/lumiere.webp", price: 7800,
     name: { fr: "Jardin Suspendu", en: "Hanging Garden" },
     cat: { fr: "Boucles d'oreilles — chandelier", en: "Earrings — chandelier" },
     desc: {
@@ -219,18 +217,22 @@ preloadFrames(
   }
 );
 
-let soundOn = false;
-function setSound(on) {
-  soundOn = on;
-  if (on) { ambience.play().catch(() => {}); } else { ambience.pause(); }
-  soundToggle.classList.toggle("playing", on);
+/* Sound is bound to the scroll-through: it plays only while the visitor
+   is inside the film section (and stops the moment they leave it). */
+let soundOn = false;    // the visitor's wish (toggle / enter button)
+let filmActive = true;  // inside the film section? (film is the first page)
+function syncSound() {
+  const play = soundOn && filmActive;
+  if (play) { ambience.play().catch(() => {}); } else { ambience.pause(); }
+  soundToggle.classList.toggle("playing", play);
 }
-soundToggle.addEventListener("click", () => setSound(!soundOn));
+soundToggle.addEventListener("click", () => { soundOn = !soundOn; syncSound(); });
 
 enterBtn.addEventListener("click", () => {
   preloader.classList.add("done");
   document.body.classList.add("entered");
-  setSound(true); // user gesture → autoplay allowed
+  soundOn = true; // user gesture → autoplay allowed
+  syncSound();
   introTimeline();
 });
 
@@ -277,7 +279,17 @@ ScrollTrigger.create({
   start: "top top",
   end: "bottom bottom",
   onUpdate: (self) => { targetFrame = self.progress * (FRAME_COUNT - 1); },
+  // sound starts with the scroll-through and ends with it
+  onToggle: (self) => { filmActive = self.isActive; syncSound(); },
 });
+
+/* brand name opens the film, then dissolves as the story begins */
+gsap.timeline({
+  scrollTrigger: { trigger: "#film", start: "top top", end: "bottom bottom", scrub: true },
+})
+  .to("#film-brand", { opacity: 0, ease: "none", duration: 0.07 }, 0.015)
+  .set("#film-brand", { visibility: "hidden" }, 0.09)
+  .to({}, { duration: 0.91 }, 0.09);
 
 (function filmLoop() {
   // eased scrubbing for a silky feel
@@ -289,7 +301,7 @@ ScrollTrigger.create({
 })();
 
 /* film captions tied to scroll beats */
-const capRanges = [ [0.02, 0.3], [0.34, 0.62], [0.72, 0.98] ];
+const capRanges = [ [0.12, 0.34], [0.4, 0.64], [0.72, 0.98] ];
 $$(".film-caption").forEach((cap, idx) => {
   const [a, b] = capRanges[idx];
   const fade = (b - a) * 0.3;
@@ -323,7 +335,6 @@ function renderCards() {
   track.innerHTML = PRODUCTS.map((p, i) => `
     <article class="product-card" data-idx="${i}">
       <div class="card-visual">
-        ${p.model3d ? `<span class="card-3d-tag">◆ ${t("tag3d")}</span>` : ""}
         <img src="${p.img}" alt="${p.name[LANG]}" draggable="false" loading="lazy">
         <span class="card-shine"></span>
       </div>
@@ -395,7 +406,7 @@ function smoothTrack(to) {
 addEventListener("resize", clampTrack);
 
 /* ─────────── Product modal ─────────── */
-const modal = $("#product-modal"), modalVisual = $(".modal-visual"), modalImg = $("#modal-img");
+const modal = $("#product-modal"), modalImg = $("#modal-img");
 let currentProduct = null;
 
 function openModal(idx) {
@@ -412,9 +423,6 @@ function openModal(idx) {
     <li><span>${t("d_cert")}</span><b>${t("cert_incl")}</b></li>
     <li><span>${t("d_made")}</span><b>${t("made_hand")}</b></li>`;
   $("#modal-cta").href = `mailto:contact@blacksaphir.com?subject=${encodeURIComponent("BLACK SAPHIR — " + p.name[LANG])}`;
-  modalVisual.classList.toggle("has-3d", !!p.model3d);
-  modalVisual.classList.remove("show-3d");
-  $("#modal-3d-btn").querySelector("span").textContent = t("view3d");
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -423,24 +431,10 @@ function closeModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
-  modalVisual.classList.remove("show-3d");
-  window.BS3D && window.BS3D.stopProduct();
 }
 $("#modal-close").addEventListener("click", closeModal);
 $("#modal-veil").addEventListener("click", closeModal);
 addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-
-$("#modal-3d-btn").addEventListener("click", () => {
-  const showing = modalVisual.classList.toggle("show-3d");
-  const label = $("#modal-3d-btn span");
-  if (showing && currentProduct && window.BS3D) {
-    window.BS3D.showProduct(currentProduct.model3d);
-    label.textContent = t("view_photo");
-  } else {
-    window.BS3D && window.BS3D.stopProduct();
-    label.textContent = t("view3d");
-  }
-});
 
 /* ─────────── Custom cursor ─────────── */
 const dot = $("#cursor-dot"), ring = $("#cursor-ring");
