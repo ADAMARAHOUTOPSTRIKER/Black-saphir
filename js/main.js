@@ -265,6 +265,18 @@ $$(".film-caption").forEach((cap, idx) => {
 const head = $("#site-head");
 addEventListener("scroll", () => head.classList.toggle("scrolled", scrollY > 40), { passive: true });
 
+/* ─────────── Mobile nav ─────────── */
+const menuToggle = $("#menu-toggle"), mobileNav = $("#mobile-nav");
+function setMenu(open) {
+  menuToggle.setAttribute("aria-expanded", String(open));
+  mobileNav.classList.toggle("open", open);
+  mobileNav.setAttribute("aria-hidden", String(!open));
+  document.body.style.overflow = open ? "hidden" : "";
+}
+menuToggle.addEventListener("click", () => setMenu(mobileNav.getAttribute("aria-hidden") === "true"));
+$$(".mobile-nav-links a", mobileNav).forEach((a) => a.addEventListener("click", () => setMenu(false)));
+addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+
 /* ─────────── Reveal animations ─────────── */
 $$(".reveal").forEach((el) => {
   gsap.to(el, {

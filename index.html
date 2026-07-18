@@ -49,8 +49,21 @@
         <span class="lang-sep">/</span>
         <button class="lang-btn" data-lang-btn="en">EN</button>
       </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- ══════════ MOBILE NAV ══════════ -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <nav class="mobile-nav-links">
+      <a href="#film" data-i18n="nav_film">Le Film</a>
+      <a href="#collection" data-i18n="nav_collection">La Collection</a>
+      <a href="#maison" data-i18n="nav_maison">La Maison</a>
+      <a href="#visite" data-i18n="nav_visite">Nous Trouver</a>
+    </nav>
+  </div>
 
   <main>
     <!-- ══════════ FILM (first page — scroll-scrubbed frames) ══════════ -->

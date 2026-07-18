@@ -142,6 +142,35 @@ body.entered .site-head { opacity: 1; transform: none; }
 .lang-btn.active { color: var(--gold-deep); font-weight: 500; }
 .lang-sep { opacity: .5; }
 
+/* ═══════════ MOBILE MENU TOGGLE ═══════════ */
+.menu-toggle {
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 6px; width: 30px; height: 30px; flex: 0 0 auto;
+}
+.menu-toggle span {
+  display: block; width: 22px; height: 1px; background: var(--ink);
+  transition: transform .4s var(--ease), opacity .3s var(--ease);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ═══════════ MOBILE NAV DRAWER ═══════════ */
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 90;
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease), visibility .5s;
+}
+.mobile-nav.open { opacity: 1; visibility: visible; transform: none; }
+.mobile-nav-links { display: flex; flex-direction: column; align-items: center; gap: 2.2rem; }
+.mobile-nav-links a {
+  font-family: var(--serif); font-size: clamp(1.6rem, 7vw, 2.4rem); font-weight: 500;
+  letter-spacing: .08em; color: var(--ink);
+}
+.mobile-nav-links a:active, .mobile-nav-links a:hover { color: var(--gold-deep); }
+
 /* ═══════════ FILM OPENING — brand name over frame 1 ═══════════ */
 .film-brand {
   position: absolute; inset: 0; z-index: 5;
@@ -459,12 +488,36 @@ section { position: relative; }
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 900px) {
   .head-nav { display: none; }
+  .menu-toggle { display: flex; }
   .maison-cols { grid-template-columns: 1fr; gap: 1.4rem; }
   .visite-grid { grid-template-columns: 1fr; }
   .modal-card { grid-template-columns: 1fr; max-height: 92vh; }
   .modal-visual { min-height: 320px; }
   .film-caption { bottom: 10vh; max-width: 82vw; }
+
+  /* soften the carousel's cut-off edge instead of a hard clip */
+  .carousel {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  }
 }
+
+@media (min-width: 901px) {
+  .mobile-nav { display: none; }
+}
+
+/* narrow phones: keep the hero title on one line and off the edges */
+@media (max-width: 400px) {
+  .hero-title { letter-spacing: .04em; font-size: clamp(2.1rem, 11vw, 3rem); }
+  .film-brand { padding: 0 1.4rem; }
+  .brand { font-size: .85rem; letter-spacing: .2em; }
+  .head-tools { gap: .9rem; }
+  .lang-switch { font-size: .64rem; }
+}
+
+/* iOS notch / home-indicator safe areas */
+.site-head { padding-left: max(clamp(1.2rem, 4vw, 3rem), env(safe-area-inset-left)); padding-right: max(clamp(1.2rem, 4vw, 3rem), env(safe-area-inset-right)); }
+.site-foot { padding-bottom: max(2.6rem, env(safe-area-inset-bottom)); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
