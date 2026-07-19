@@ -34,7 +34,7 @@ document.addEventListener("click", (e) => {
   closeMenu();
   if (lenis) {
     e.preventDefault();
-    lenis.scrollTo(target, { offset: -68, duration: 1.1 });
+    lenis.scrollTo(target, { offset: -92, duration: 1.1 });
   }
 });
 
