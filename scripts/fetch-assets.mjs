@@ -32,9 +32,9 @@ const FILES = [
   // craft demo film (10 s, 1080p, cinematic sound; luxury camera assembles, shoots, disassembles)
   ["assets/video/craft-film.mp4", `${CDN}/hf_20260719_224814_5314faa0-06cd-4205-a6ef-53f3a30be162.mp4`],
   // watch demo film poster: exploded chronograph flat-lay with engraved part captions
-  ["assets/img/craft-film-montre-poster.webp", `${CDN}/MONTRE_POSTER_PENDING`],
+  ["assets/img/craft-film-montre-poster.webp", `${CDN}/hf_20260719_225831_df975ee4-0e9b-46c5-8deb-027fc57c6e39_min.webp`],
   // watch demo film (10 s, 720p, cinematic sound; chronograph assembles, fires, disassembles)
-  ["assets/video/craft-film-montre.mp4", `${CDN}/MONTRE_FILM_PENDING`]
+  ["assets/video/craft-film-montre.mp4", `${CDN}/hf_20260719_225829_7a2119ca-7702-4439-a29e-88c2616ad93b.mp4`]
 ];
 
 let fetched = 0, skipped = 0, failed = 0;
