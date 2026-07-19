@@ -46,7 +46,10 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-1: 0.25s; --dur-2: 0.55s; --dur-3: 0.9s;
   /* layers */
-  --z-ghost: 40; --z-menu: 150; --z-head: 160; --z-case: 200; --z-pre: 300; --z-cursor: 400;
+  --z-ghost: 40; --z-float: 90; --z-menu: 150; --z-head: 160; --z-case: 200; --z-pre: 300; --z-cursor: 400;
+  /* brand colors of third parties (content, not UI accent) */
+  --c-whatsapp: oklch(72% 0.19 150);
+  --c-whatsapp-deep: oklch(60% 0.17 150);
   /* shape */
   --r-pill: 999px;
 }
@@ -153,6 +156,31 @@ body[data-motion="on"][data-pointer="fine"] .cursor { display: grid; }
 }
 .cursor.has-label { width: 64px; height: 64px; background: var(--c-accent); border-color: var(--c-accent); }
 .cursor.has-label .cursor-label { opacity: 1; }
+
+/* ═══════════════ WHATSAPP FLOAT ═══════════════ */
+.wa-float {
+  position: fixed;
+  left: max(var(--sp-4), env(safe-area-inset-left));
+  bottom: calc(var(--sp-4) + env(safe-area-inset-bottom));
+  z-index: var(--z-float);
+  width: 52px; height: 52px;
+  border-radius: var(--r-pill);
+  background: var(--c-whatsapp);
+  color: oklch(99% 0.005 150);
+  display: grid; place-items: center;
+  box-shadow: 0 6px 22px oklch(60% 0.17 150 / 0.35);
+  opacity: 0; scale: 0.6; translate: 0 14px;
+  transition: background var(--dur-1) var(--ease-out), box-shadow var(--dur-1) var(--ease-out),
+              opacity var(--dur-2) var(--ease-out), scale var(--dur-2) var(--ease-out),
+              translate var(--dur-2) var(--ease-out);
+}
+.wa-float.is-in { opacity: 1; scale: 1; translate: 0 0; }
+body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
+.wa-float:hover { background: var(--c-whatsapp-deep); box-shadow: 0 8px 26px oklch(60% 0.17 150 / 0.45); }
+.wa-float:active { transform: scale(0.94); }
+@media (max-width: 767px) {
+  .wa-float { width: 48px; height: 48px; }
+}
 
 /* ═══════════════ HEADER ═══════════════ */
 .site-head {

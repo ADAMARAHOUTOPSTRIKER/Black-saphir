@@ -51,6 +51,10 @@ function applyLang(next) {
     const k = el.dataset.i18n;
     if (dict[k] !== undefined) el.textContent = dict[k];
   });
+  $$("[data-i18n-aria]").forEach((el) => {
+    const k = el.dataset.i18nAria;
+    if (dict[k] !== undefined) el.setAttribute("aria-label", dict[k]);
+  });
   $$("[data-lang-btn]").forEach((b) =>
     b.setAttribute("aria-pressed", String(b.dataset.langBtn === lang))
   );
@@ -275,9 +279,16 @@ function heroIntro(instant) {
   }
 }
 
+/* WhatsApp float entrance (CSS-driven: individual scale/translate properties,
+   so it never fights the magnetic quickTo inline transform) */
+function waIntro(delay) {
+  setTimeout(() => $("#wa-float").classList.add("is-in"), delay * 1000);
+}
+
 if (!motionOn || seen) {
   preloader.classList.add("is-done");
   heroIntro(true);
+  waIntro(0.6);
 } else {
   sessionStorage.setItem("cw-pre-seen", "1");
   const count = { v: 0 };
@@ -290,7 +301,8 @@ if (!motionOn || seen) {
     .to(".pre-inner", { opacity: 0, y: -14, duration: 0.3, ease: "power2.in" }, "+=0.1")
     .to(preloader, { yPercent: -100, duration: 0.65, ease: "expo.inOut" })
     .add(() => preloader.classList.add("is-done"))
-    .add(heroIntro, "-=0.45");
+    .add(heroIntro, "-=0.45")
+    .add(() => waIntro(0.7));
 }
 
 /* ─────────── hero atmosphere ─────────── */
