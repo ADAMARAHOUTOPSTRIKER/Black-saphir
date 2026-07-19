@@ -26,7 +26,7 @@ const FILES = [
   // hero atmosphere poster (light still, 2752x1536 master + optimized webp)
   ["assets/img/atmos-poster.webp", `${CDN}/hf_20260719_194433_56359980-fb82-4449-92ac-ba64b1966d96_min.webp`],
   // hero atmosphere loop (6 s, 1080p, silent, start frame = end frame)
-  ["assets/video/atmos.mp4", `${CDN}/VIDEO_FILE_PENDING`]
+  ["assets/video/atmos.mp4", `${CDN}/hf_20260719_212648_2d9f9e84-163d-4c76-903a-9ea8338bb6ae.mp4`]
 ];
 
 let fetched = 0, skipped = 0, failed = 0;
