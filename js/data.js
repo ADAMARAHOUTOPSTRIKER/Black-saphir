@@ -10,6 +10,7 @@ const CONVERS_DATA = {
      * a missing file simply falls back to the CSS atmosphere. */
     heroVideo: "assets/video/atmos.mp4",   // brand-atmosphere loop, 16:9, silent
     heroPoster: "assets/img/atmos-poster.webp",
+    heroMac: "assets/img/hero-mac.png",    // cutout MacBook with client-stats dashboard, matched to the atmosphere light
     reel: null,                            // stays null until a real-work montage exists
     /* In-house demo advertisement films for the "Films publicitaires" craft.
      * Same storyboard each time: exploded flat-lay on black, mid-air self

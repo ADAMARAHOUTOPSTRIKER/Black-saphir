@@ -343,6 +343,27 @@ if (!motionOn || seen) {
     }
   }
 
+  /* optional MacBook stats visual, right side of the hero (manifest-driven) */
+  const macSrc = CONVERS_DATA.media.heroMac;
+  if (macSrc && matchMedia("(min-width: 1024px)").matches) {
+    fetch(macSrc, { method: "HEAD" }).then((r) => {
+      if (!r.ok) return;
+      const mac = $("#hero-mac");
+      mac.src = macSrc;
+      mac.hidden = false;
+      if (motionOn) {
+        gsap.from(mac, { y: 60, opacity: 0, duration: 1.1, delay: 0.9, ease: "power3.out" });
+        gsap.to(mac, { y: -14, duration: 6, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 2 });
+        if (finePointer) {
+          const mx = gsap.quickTo(mac, "x", { duration: 1.4, ease: "power3.out" });
+          $("#hero").addEventListener("pointermove", (e) => {
+            mx((e.clientX / innerWidth - 0.5) * -18);
+          });
+        }
+      }
+    }).catch(() => {});
+  }
+
   /* optional brand-atmosphere video (manifest-driven, verified before enabling
      so a missing file quietly falls back to the CSS atmosphere) */
   const src = CONVERS_DATA.media.heroVideo;

@@ -279,6 +279,19 @@ body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
 }
 .atmos-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
 .atmos-grain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.05; pointer-events: none; }
+.hero-mac {
+  /* the cutout keeps transparent margins from its source frame, so the box is
+     oversized on purpose; #hero clips any overflow */
+  position: absolute;
+  right: calc(var(--gutter) * -1);
+  bottom: clamp(2rem, 10vh, 7rem);
+  width: clamp(620px, 58vw, 1040px);
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 30px 60px oklch(30% 0.02 262 / 0.18));
+  will-change: transform;
+}
+@media (max-width: 1023px) { .hero-mac { display: none; } }
 .hero-inner { position: relative; z-index: 1; max-width: 1600px; width: 100%; }
 .hero-title {
   font-family: var(--font-display); font-weight: 700;
