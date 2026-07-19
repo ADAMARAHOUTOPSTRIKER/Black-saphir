@@ -487,6 +487,15 @@ if (motionOn) {
     strokeDashoffset: 0, ease: "none",
     scrollTrigger: { trigger: ".process-flow", start: "top 75%", end: "bottom 45%", scrub: 0.6 }
   });
+
+  /* staircase steps reveal one by one, driven by the scroll position
+     (scrubbed, so they follow the drawn line instead of popping at once) */
+  $$(".step").forEach((step) => {
+    gsap.fromTo(step,
+      { opacity: 0, y: 44, x: -22 },
+      { opacity: 1, y: 0, x: 0, ease: "none",
+        scrollTrigger: { trigger: step, start: "top 96%", end: "top 62%", scrub: 0.5 } });
+  });
 }
 
 /* ─────────── marquee (velocity-reactive) ─────────── */
