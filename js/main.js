@@ -605,6 +605,47 @@ if (motionOn) {
   });
 })();
 
+/* ─────────── reviews carousel ─────────── */
+(function reviews() {
+  const track = $("#reviews-track");
+  if (!track || typeof REVIEWS === "undefined" || !REVIEWS.length) return;
+
+  function initials(name) {
+    return name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+  }
+  function render() {
+    track.innerHTML = "";
+    REVIEWS.forEach((r) => {
+      const li = document.createElement("li");
+      li.className = "review-card";
+      li.style.setProperty("--p-hue", r.hue);
+      const avatar = r.photo
+        ? `<img src="${r.photo}" alt="">`
+        : `<span aria-hidden="true">${initials(r.name)}</span>`;
+      li.innerHTML = `
+        <div class="review-stars" aria-label="5/5">★★★★★</div>
+        <p class="review-text">${r.text[lang]}</p>
+        <div class="review-who">
+          <div class="review-avatar">${avatar}</div>
+          <div>
+            <p class="review-name">${r.name}</p>
+            <p class="review-place">${r.place}</p>
+          </div>
+        </div>`;
+      track.appendChild(li);
+    });
+  }
+  render();
+  document.addEventListener("cw:lang", render);
+
+  const step = () => {
+    const card = $(".review-card", track);
+    return card ? card.getBoundingClientRect().width + 24 : 400;
+  };
+  $("#rev-prev").addEventListener("click", () => track.scrollBy({ left: -step(), behavior: motionOn ? "smooth" : "auto" }));
+  $("#rev-next").addEventListener("click", () => track.scrollBy({ left: step(), behavior: motionOn ? "smooth" : "auto" }));
+})();
+
 /* ─────────── magnetic elements ─────────── */
 if (motionOn && finePointer) {
   $$(".magnetic").forEach((el) => {

@@ -107,6 +107,35 @@ const CONVERS_DATA = {
   ]
 };
 
+/* ─────────── reviews ───────────
+ * DRAFT testimonials to REPLACE with real client words before launch
+ * (publishing invented reviews as genuine ones is illegal in the EU and
+ * in Morocco). Keep the structure: set `photo` to a real image path once
+ * you have the client's permission; the monogram avatar is the fallback. */
+const REVIEWS = [
+  { id: "r1", name: "Yasmine B.", place: "Casablanca", hue: "var(--p-marsa)", photo: null,
+    text: { fr: "Le site ressemble enfin à ce que le club fait vivre sur place. Les membres nous en parlent à chaque visite.",
+            en: "The site finally feels like what the club offers in person. Members mention it at every visit." } },
+  { id: "r2", name: "Karim E.", place: "Rabat", hue: "var(--p-saphir)", photo: null,
+    text: { fr: "La vitrine 3D a changé nos rendez-vous : les clients arrivent en ayant déjà tourné autour de la voiture.",
+            en: "The 3D showroom changed our appointments: clients arrive having already walked around the car." } },
+  { id: "r3", name: "Sophie L.", place: "Paris", hue: "var(--p-sentia)", photo: null,
+    text: { fr: "Un travail d'orfèvre. Chaque animation sert le produit, rien n'est gratuit.",
+            en: "Goldsmith level work. Every animation serves the product, nothing is gratuitous." } },
+  { id: "r4", name: "Mehdi A.", place: "Marrakech", hue: "var(--p-optic)", photo: null,
+    text: { fr: "Livré en avance, avec un niveau de finition que nous n'avions vu nulle part ailleurs.",
+            en: "Delivered early, with a level of finish we had not seen anywhere else." } },
+  { id: "r5", name: "Claire D.", place: "Lyon", hue: "var(--p-marsa)", photo: null,
+    text: { fr: "Le film publicitaire a donné une voix à notre marque. On nous demande qui l'a réalisé.",
+            en: "The advertising film gave our brand a voice. People ask us who made it." } },
+  { id: "r6", name: "Omar T.", place: "Casablanca", hue: "var(--p-saphir)", photo: null,
+    text: { fr: "Une équipe qui écoute d'abord, puis qui propose mieux que ce que nous imaginions.",
+            en: "A team that listens first, then proposes better than what we imagined." } },
+  { id: "r7", name: "Inès R.", place: "Bruxelles", hue: "var(--p-optic)", photo: null,
+    text: { fr: "Rapides, précis, exigeants. Le site tient la promesse sur mobile comme sur grand écran.",
+            en: "Fast, precise, demanding. The site keeps its promise on mobile and on large screens." } }
+];
+
 /* ─────────── i18n ───────────
  * FR is the source of truth and lives in the HTML. EN overrides below. */
 const I18N = {
@@ -133,6 +162,8 @@ const I18N = {
     prc2_t: "Design & motion", prc2_p: "Direction artistique, prototypes, et chaque animation justifiée par le sens.",
     prc3_t: "Mise en ligne", prc3_p: "Tests, performance, lancement. Puis nous restons à vos côtés.",
     man_quote: "Un site ne doit pas seulement s'afficher. Il doit se vivre.",
+    rev_over: "Témoignages",
+    rev_title: "Ce que nos clients retiennent.",
     ct_lead: "Un site, un film, ou les deux ?",
     case_visit: "Visiter le site",
     case_pending: "Capture exacte en cours d'intégration. Le site, lui, est déjà en ligne.",
@@ -171,6 +202,8 @@ const I18N = {
     prc2_t: "Design & motion", prc2_p: "Art direction, prototypes, and every animation justified by meaning.",
     prc3_t: "Launch", prc3_p: "Testing, performance, release. Then we stay by your side.",
     man_quote: "A website should not only be seen. It should be experienced.",
+    rev_over: "Testimonials",
+    rev_title: "What our clients remember.",
     ct_lead: "A website, a film, or both?",
     case_visit: "Visit the site",
     case_pending: "Exact capture on its way. The site itself is already live.",

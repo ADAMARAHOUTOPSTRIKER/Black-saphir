@@ -458,6 +458,57 @@ body[data-motion="on"] .process-line { color: var(--c-accent); }
   max-width: 24ch;
 }
 
+/* ═══════════════ REVIEWS (the page's one deliberate dark block) ═══════════════ */
+#avis {
+  background: var(--c-ink);
+  color: var(--c-paper);
+  padding: var(--sp-32) 0;
+}
+.reviews-inner { max-width: 1600px; }
+#avis .eyebrow { color: oklch(70% 0.16 262); }
+.rev-title { color: var(--c-paper); }
+.reviews-track {
+  display: flex; gap: var(--sp-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: var(--sp-12) var(--gutter) var(--sp-4);
+  scrollbar-width: none;
+}
+.reviews-track::-webkit-scrollbar { display: none; }
+.review-card {
+  flex: 0 0 min(400px, 82vw);
+  scroll-snap-align: start;
+  background: oklch(24% 0.012 262);
+  border: 1px solid oklch(32% 0.012 262);
+  padding: var(--sp-8);
+  display: flex; flex-direction: column; gap: var(--sp-6);
+}
+.review-stars { color: var(--p-saphir); letter-spacing: 0.2em; font-size: 0.85rem; }
+.review-text { color: oklch(78% 0.008 262); font-size: var(--t-small); line-height: 1.7; flex: 1; }
+.review-who { display: flex; align-items: center; gap: var(--sp-3); }
+.review-avatar {
+  width: 42px; height: 42px; border-radius: 50%; overflow: clip; flex: 0 0 auto;
+  display: grid; place-items: center;
+  background: oklch(from var(--p-hue, var(--c-accent)) 35% c h);
+  color: var(--c-paper);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+}
+.review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.review-name { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--c-paper); }
+.review-place { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; color: oklch(60% 0.01 262); }
+.reviews-nav { display: flex; justify-content: flex-end; gap: var(--sp-3); padding: var(--sp-4) var(--gutter) 0; }
+.rev-arrow {
+  width: 48px; height: 48px; border-radius: var(--r-pill);
+  border: 1px solid oklch(40% 0.012 262);
+  color: var(--c-paper);
+  display: grid; place-items: center;
+  transition: background var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
+}
+.rev-arrow:hover { border-color: var(--c-paper); }
+.rev-arrow-accent { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+.rev-arrow-accent:hover { background: var(--c-accent-deep); border-color: var(--c-accent-deep); }
+#avis :focus-visible { outline-color: oklch(70% 0.16 262); }
+
 /* ═══════════════ CONTACT ═══════════════ */
 #contact {
   padding: var(--sp-32) var(--gutter) var(--sp-24);
