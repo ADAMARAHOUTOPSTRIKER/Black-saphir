@@ -47,8 +47,8 @@ const CONVERS_DATA = {
         en: "The ocean as a way of living, told through a full screen film and end of day light."
       },
       quote: "L'océan comme art de vivre.",
-      cover: null,
-      loop: null
+      cover: "assets/work/marsa-cover.webp",
+      loop: "assets/work/marsa-loop.webm"
     },
     {
       id: "opticvision",
@@ -65,7 +65,7 @@ const CONVERS_DATA = {
         en: "An eyewear house suspended in the clouds. The frame becomes a rare object."
       },
       quote: "La vision, sculptée comme un objet rare.",
-      cover: null,
+      cover: null,  // OpticVision: live link only, per client decision
       loop: null
     },
     {
@@ -82,8 +82,9 @@ const CONVERS_DATA = {
         fr: "Ananas, vanille, fumée blanche : le parfum se voit avant de se sentir.",
         en: "Pineapple, vanilla, white smoke: the fragrance is seen before it is smelled."
       },
-      cover: null,
-      loop: null
+      quote: "L'art de se souvenir par les sens.",
+      cover: "assets/work/sentia-cover.webp",
+      loop: "assets/work/sentia-loop.webm"
     }
   ]
 };
