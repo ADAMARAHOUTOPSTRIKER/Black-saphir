@@ -56,6 +56,7 @@ function applyLang(next) {
   );
   renderRowMeta();
   if (openProject) fillCase(openProject);
+  document.dispatchEvent(new CustomEvent("cw:lang"));
 }
 $$("[data-lang-btn]").forEach((b) =>
   b.addEventListener("click", () => applyLang(b.dataset.langBtn))
@@ -520,17 +521,54 @@ if (motionOn) {
   });
 })();
 
-/* ─────────── craft demo film (manifest-driven) ─────────── */
+/* ─────────── craft demo films (manifest-driven, multi-film switcher) ─────────── */
 (async function craftFilm() {
-  const cf = CONVERS_DATA.media.craftFilm;
-  if (!cf || !cf.src) return;
-  const ok = await fetch(cf.src, { method: "HEAD" }).then((r) => r.ok).catch(() => false);
-  if (!ok) return;
+  const films = CONVERS_DATA.media.craftFilms || [];
+  if (!films.length) return;
+  const checks = await Promise.all(films.map((f) =>
+    fetch(f.src, { method: "HEAD" }).then((r) => r.ok).catch(() => false)));
+  const avail = films.filter((_, i) => checks[i]);
+  if (!avail.length) return;
   const stage = $("#craft-film-stage");
   const video = $("#craft-film-video");
   const motif = $(".craft-film .cv-film");
-  video.src = cf.src;
-  if (cf.poster) video.poster = cf.poster;
+  const switcher = $("#craft-film-switch");
+
+  function showFilm(f) {
+    video.pause();
+    video.src = f.src;
+    video.poster = f.poster || "";
+    video.load();
+    video.play().catch(() => {});
+    $$("button", switcher).forEach((b) =>
+      b.setAttribute("aria-pressed", String(b.dataset.film === f.id)));
+  }
+
+  if (avail.length > 1) {
+    switcher.hidden = false;
+    avail.forEach((f) => {
+      const b = document.createElement("button");
+      b.dataset.film = f.id;
+      b.textContent = f.label[lang];
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", () => showFilm(f));
+      switcher.appendChild(b);
+    });
+    document.addEventListener("cw:lang", () => {
+      $$("button", switcher).forEach((b) => {
+        const f = avail.find((x) => x.id === b.dataset.film);
+        if (f) b.textContent = f.label[lang];
+      });
+    });
+  }
+
+  const first = avail[0];
+  video.src = first.src;
+  if (first.poster) video.poster = first.poster;
+  if (avail.length > 1) {
+    const b = $$("button", switcher).find((x) => x.dataset.film === first.id);
+    if (b) b.setAttribute("aria-pressed", "true");
+  }
   stage.hidden = false;
   $("#craft-film-caption").hidden = false;
   if (motif) motif.style.display = "none";

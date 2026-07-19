@@ -11,13 +11,24 @@ const CONVERS_DATA = {
     heroVideo: "assets/video/atmos.mp4",   // brand-atmosphere loop, 16:9, silent
     heroPoster: "assets/img/atmos-poster.webp",
     reel: null,                            // stays null until a real-work montage exists
-    craftFilm: {
-      /* In-house demo advertisement film for the "Films publicitaires" craft:
-       * a luxury camera assembles itself mid-air, takes the shot, and returns
-       * to its exploded flat-lay with engraved part captions (poster). */
-      src: "assets/video/craft-film.mp4",
-      poster: "assets/img/craft-film-poster.webp"
-    }
+    /* In-house demo advertisement films for the "Films publicitaires" craft.
+     * Same storyboard each time: exploded flat-lay on black, mid-air self
+     * assembly, one action beat, return and disassembly; engraved part
+     * captions live on the poster stills. */
+    craftFilms: [
+      {
+        id: "camera",
+        label: { fr: "Caméra", en: "Camera" },
+        src: "assets/video/craft-film.mp4",
+        poster: "assets/img/craft-film-poster.webp"
+      },
+      {
+        id: "montre",
+        label: { fr: "Montre", en: "Watch" },
+        src: "assets/video/craft-film-montre.mp4",
+        poster: "assets/img/craft-film-montre-poster.webp"
+      }
+    ]
   },
 
   projects: [

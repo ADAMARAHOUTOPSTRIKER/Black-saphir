@@ -358,6 +358,17 @@ body[data-motion="on"][data-pointer="fine"] .cursor { display: grid; }
   overflow: clip; padding: 0;
 }
 .cv-stage video { width: 100%; height: 100%; object-fit: cover; }
+.cv-films-switch { display: flex; gap: var(--sp-2); margin-top: var(--sp-3); }
+.cv-films-switch button {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  border: 1px solid var(--c-line); border-radius: var(--r-pill);
+  padding: 0.35rem 0.9rem; color: var(--c-ink-2);
+  transition: background var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out),
+              border-color var(--dur-1) var(--ease-out);
+}
+.cv-films-switch button[aria-pressed="true"] {
+  background: var(--c-ink); border-color: var(--c-ink); color: var(--c-paper);
+}
 .cv-caption { margin-top: var(--sp-2); color: var(--c-ink-3); }
 .cvw-plane {
   position: absolute; background: var(--c-paper); border: 1px solid var(--c-line);
