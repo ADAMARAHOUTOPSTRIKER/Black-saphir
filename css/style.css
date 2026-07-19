@@ -283,9 +283,9 @@ body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
   /* the cutout keeps transparent margins from its source frame, so the box is
      oversized on purpose; #hero clips any overflow */
   position: absolute;
-  right: calc(var(--gutter) * -1);
-  bottom: clamp(2rem, 10vh, 7rem);
-  width: clamp(620px, 58vw, 1040px);
+  right: calc(var(--gutter) * -1.2);
+  bottom: clamp(1rem, 8vh, 5rem);
+  width: clamp(780px, 74vw, 1360px);
   z-index: 0;
   pointer-events: none;
   filter: drop-shadow(0 30px 60px oklch(30% 0.02 262 / 0.18));
