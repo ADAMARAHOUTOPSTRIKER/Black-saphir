@@ -21,7 +21,7 @@
   --c-on-accent:   oklch(98% 0.005 262);
   --c-veil:     oklch(97.6% 0.004 250 / 0.82);
   /* per-project hues (portfolio content, not UI accent) */
-  --p-obsidienne: oklch(54% 0.19 27);
+  --p-saphir:     oklch(78% 0.11 85);
   --p-marsa:      oklch(68% 0.115 82);
   --p-optic:      oklch(74% 0.055 238);
   --p-sentia:     oklch(70% 0.09 95);

@@ -33,22 +33,22 @@ const CONVERS_DATA = {
 
   projects: [
     {
-      id: "obsidienne",
-      name: "Obsidienne",
-      url: "https://votreconcession3-d-ywny.vercel.app/",
-      hue: "var(--p-obsidienne)",
-      sector: { fr: "Automobile", en: "Automotive" },
+      id: "blacksaphir",
+      name: "Black Saphir",
+      url: "https://black-saphir.vercel.app/",
+      hue: "var(--p-saphir)",
+      sector: { fr: "Haute joaillerie", en: "Fine jewelry" },
       services: {
-        fr: ["Site immersif", "Showroom 3D", "Direction artistique"],
-        en: ["Immersive website", "3D showroom", "Art direction"]
+        fr: ["Site vitrine", "Film au défilement", "Direction artistique"],
+        en: ["Brand website", "Scroll driven film", "Art direction"]
       },
       desc: {
-        fr: "Une concession automobile pilotée en 3D. Chaque modèle se manipule du bout des doigts, directement dans le navigateur.",
-        en: "A car dealership driven in 3D. Every model can be spun with a fingertip, right in the browser."
+        fr: "Une maison de joaillerie racontée image par image : le solitaire naît sous vos yeux au fil du défilement.",
+        en: "A jewelry house told frame by frame: the solitaire takes shape as you scroll."
       },
-      quote: "Votre vitrine. Leur premier essai.",
-      cover: null,  // exact screenshot, e.g. "assets/work/obsidienne-cover.webp"
-      loop: null    // exact screen recording, e.g. "assets/work/obsidienne-loop.webm"
+      quote: "L'éclat n'attend que vous.",
+      cover: "assets/work/blacksaphir-cover.webp",
+      loop: "assets/work/blacksaphir-loop.webm"
     },
     {
       id: "marsa",
