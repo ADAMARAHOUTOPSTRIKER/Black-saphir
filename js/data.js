@@ -5,9 +5,12 @@
 
 const CONVERS_DATA = {
   media: {
-    heroVideo: null,   // e.g. "assets/video/atmos.webm"  (brand-atmosphere loop, 16:9)
-    heroPoster: null,  // e.g. "assets/img/atmos-poster.webp"
-    reel: null         // e.g. "assets/video/reel.mp4"    (showreel, 21:9)
+    /* Files are fetched by scripts/fetch-assets.mjs (runs automatically in the
+     * Vercel build). main.js verifies each file exists before enabling it, so
+     * a missing file simply falls back to the CSS atmosphere. */
+    heroVideo: "assets/video/atmos.mp4",   // brand-atmosphere loop, 16:9, silent
+    heroPoster: "assets/img/atmos-poster.webp",
+    reel: null                             // stays null until a real-work montage exists
   },
 
   projects: [
@@ -25,6 +28,7 @@ const CONVERS_DATA = {
         fr: "Une concession automobile pilotée en 3D. Chaque modèle se manipule du bout des doigts, directement dans le navigateur.",
         en: "A car dealership driven in 3D. Every model can be spun with a fingertip, right in the browser."
       },
+      quote: "Votre vitrine. Leur premier essai.",
       cover: null,  // exact screenshot, e.g. "assets/work/obsidienne-cover.webp"
       loop: null    // exact screen recording, e.g. "assets/work/obsidienne-loop.webm"
     },
@@ -42,6 +46,7 @@ const CONVERS_DATA = {
         fr: "L'océan comme art de vivre, raconté par un film plein écran et une lumière de fin de journée.",
         en: "The ocean as a way of living, told through a full screen film and end of day light."
       },
+      quote: "L'océan comme art de vivre.",
       cover: null,
       loop: null
     },
@@ -59,6 +64,7 @@ const CONVERS_DATA = {
         fr: "Une maison d'optique suspendue dans les nuages. La monture y devient un objet rare.",
         en: "An eyewear house suspended in the clouds. The frame becomes a rare object."
       },
+      quote: "La vision, sculptée comme un objet rare.",
       cover: null,
       loop: null
     },

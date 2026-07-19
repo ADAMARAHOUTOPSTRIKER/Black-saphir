@@ -104,6 +104,9 @@ let lastFocus = null;
 function fillCase(p) {
   $("#case-sector").textContent = p.sector[lang];
   $("#case-name").textContent = p.name;
+  const q = $("#case-quote");
+  q.hidden = !p.quote;
+  q.textContent = p.quote ? `« ${p.quote} »` : "";
   $("#case-desc").textContent = p.desc[lang];
   $("#case-visit").href = p.url;
   const list = $("#case-services");
@@ -327,19 +330,25 @@ if (!motionOn || seen) {
     }
   }
 
-  /* optional brand-atmosphere video (manifest-driven) */
+  /* optional brand-atmosphere video (manifest-driven, verified before enabling
+     so a missing file quietly falls back to the CSS atmosphere) */
   const src = CONVERS_DATA.media.heroVideo;
   if (src) {
-    const v = $("#atmos-video");
-    v.src = src;
-    if (CONVERS_DATA.media.heroPoster) v.poster = CONVERS_DATA.media.heroPoster;
-    v.hidden = false;
-    if (motionOn) {
-      ScrollTrigger.create({
-        trigger: "#hero", start: "top bottom", end: "bottom top",
-        onToggle: (self) => (self.isActive ? v.play().catch(() => {}) : v.pause())
-      });
-    }
+    fetch(src, { method: "HEAD" }).then((r) => {
+      if (!r.ok) return;
+      const v = $("#atmos-video");
+      v.src = src;
+      if (CONVERS_DATA.media.heroPoster) v.poster = CONVERS_DATA.media.heroPoster;
+      v.hidden = false;
+      if (motionOn) {
+        ScrollTrigger.create({
+          trigger: "#hero", start: "top bottom", end: "bottom top",
+          onToggle: (self) => (self.isActive ? v.play().catch(() => {}) : v.pause())
+        });
+      } else {
+        v.preload = "metadata";
+      }
+    }).catch(() => {});
   }
 })();
 
@@ -487,9 +496,11 @@ if (motionOn) {
 })();
 
 /* ─────────── reel (manifest-driven) ─────────── */
-(function reel() {
+(async function reel() {
   const src = CONVERS_DATA.media.reel;
   if (!src) return;
+  const ok = await fetch(src, { method: "HEAD" }).then((r) => r.ok).catch(() => false);
+  if (!ok) return;
   const section = $("#reel");
   const video = $("#reel-video");
   section.hidden = false;

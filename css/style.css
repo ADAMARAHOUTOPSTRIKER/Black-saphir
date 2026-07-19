@@ -485,6 +485,12 @@ body[data-motion="on"] .process-line { color: var(--c-accent); }
 .case-info { padding: clamp(1.5rem, 4vw, 4rem); display: flex; flex-direction: column; justify-content: center; gap: var(--sp-4); min-width: 0; }
 .case-sector { color: var(--c-ink-3); text-transform: uppercase; letter-spacing: 0.14em; }
 .case-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: -0.02em; }
+.case-quote {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: 1.15rem; letter-spacing: -0.005em; color: var(--c-ink);
+  border-left: 2px solid var(--p-hue, var(--c-line));
+  padding-left: var(--sp-4);
+}
 .case-desc { color: var(--c-ink-2); max-width: 44ch; }
 .case-services { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .case-services li {
