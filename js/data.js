@@ -10,7 +10,14 @@ const CONVERS_DATA = {
      * a missing file simply falls back to the CSS atmosphere. */
     heroVideo: "assets/video/atmos.mp4",   // brand-atmosphere loop, 16:9, silent
     heroPoster: "assets/img/atmos-poster.webp",
-    reel: null                             // stays null until a real-work montage exists
+    reel: null,                            // stays null until a real-work montage exists
+    craftFilm: {
+      /* In-house demo advertisement film for the "Films publicitaires" craft:
+       * a luxury camera assembles itself mid-air, takes the shot, and returns
+       * to its exploded flat-lay with engraved part captions (poster). */
+      src: "assets/video/craft-film.mp4",
+      poster: "assets/img/craft-film-poster.webp"
+    }
   },
 
   projects: [
@@ -109,6 +116,7 @@ const I18N = {
     srv2_t: "Films publicitaires",
     srv2_p: "Des films courts qui donnent une voix à votre marque, du concept au montage final.",
     srv2_l1: "Concept & script", srv2_l2: "Image & génération", srv2_l3: "Montage & étalonnage", srv2_l4: "Habillage sonore", srv2_l5: "Déclinaisons réseaux",
+    srv2_demo: "Film de démonstration, réalisé par le studio. Cliquez pour le son.",
     prc_title: "Comment nous travaillons",
     prc1_t: "Cadrage", prc1_p: "Nous écoutons, puis nous définissons le cap : audience, intention, ton.",
     prc2_t: "Design & motion", prc2_p: "Direction artistique, prototypes, et chaque animation justifiée par le sens.",
@@ -145,6 +153,7 @@ const I18N = {
     srv2_t: "Advertising films",
     srv2_p: "Short films that give your brand a voice, from concept to final cut.",
     srv2_l1: "Concept & script", srv2_l2: "Footage & generation", srv2_l3: "Editing & grading", srv2_l4: "Sound design", srv2_l5: "Social formats",
+    srv2_demo: "Demo film, made in-house by the studio. Click for sound.",
     prc_title: "How we work",
     prc1_t: "Framing", prc1_p: "We listen, then we set the course: audience, intention, tone.",
     prc2_t: "Design & motion", prc2_p: "Art direction, prototypes, and every animation justified by meaning.",

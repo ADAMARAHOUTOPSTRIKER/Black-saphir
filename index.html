@@ -169,12 +169,16 @@
             <li data-i18n="srv2_l5">Déclinaisons réseaux</li>
           </ul>
         </div>
-        <div class="craft-visual" aria-hidden="true">
-          <div class="cv-film">
+        <div class="craft-visual">
+          <div class="cv-film" aria-hidden="true">
             <span class="cvf-bar"></span><span class="cvf-bar"></span><span class="cvf-bar"></span><span class="cvf-bar"></span>
             <span class="cvf-orb"><span class="cvf-play"></span></span>
             <span class="cvf-scrub"><span class="cvf-scrub-fill"></span></span>
           </div>
+          <button class="cv-stage" id="craft-film-stage" hidden data-cursor="play" aria-label="Lire le film de démonstration">
+            <video id="craft-film-video" muted loop playsinline preload="none"></video>
+          </button>
+          <p class="cv-caption mono" id="craft-film-caption" hidden data-i18n="srv2_demo">Film de démonstration, réalisé par le studio.</p>
         </div>
       </article>
 

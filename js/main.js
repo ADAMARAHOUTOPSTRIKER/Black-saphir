@@ -520,6 +520,41 @@ if (motionOn) {
   });
 })();
 
+/* ─────────── craft demo film (manifest-driven) ─────────── */
+(async function craftFilm() {
+  const cf = CONVERS_DATA.media.craftFilm;
+  if (!cf || !cf.src) return;
+  const ok = await fetch(cf.src, { method: "HEAD" }).then((r) => r.ok).catch(() => false);
+  if (!ok) return;
+  const stage = $("#craft-film-stage");
+  const video = $("#craft-film-video");
+  const motif = $(".craft-film .cv-film");
+  video.src = cf.src;
+  if (cf.poster) video.poster = cf.poster;
+  stage.hidden = false;
+  $("#craft-film-caption").hidden = false;
+  if (motif) motif.style.display = "none";
+  if (motionOn) {
+    ScrollTrigger.create({
+      trigger: stage, start: "top bottom", end: "bottom top",
+      onToggle: (self) => {
+        if (self.isActive) { video.preload = "metadata"; video.play().catch(() => {}); }
+        else video.pause();
+      }
+    });
+    ScrollTrigger.refresh();
+  }
+  stage.addEventListener("click", () => {
+    if (document.fullscreenElement) { document.exitFullscreen(); video.muted = true; return; }
+    (stage.requestFullscreen ? stage.requestFullscreen() : Promise.reject()).then(() => {
+      video.muted = false; video.currentTime = 0; video.play().catch(() => {});
+    }).catch(() => { video.muted = !video.muted; });
+  });
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) video.muted = true;
+  });
+})();
+
 /* ─────────── magnetic elements ─────────── */
 if (motionOn && finePointer) {
   $$(".magnetic").forEach((el) => {
