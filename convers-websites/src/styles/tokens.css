@@ -1,0 +1,50 @@
+/* ─────────────────────────────────────────────────────────────
+   CONVERS — Design tokens
+   Single source of truth for color, type, spacing & motion.
+   Swap the accent here to re-theme the whole site.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette — quiet luxury, cinematic dark */
+  --bg: #0b0b0d;
+  --surface: #141418;
+  --surface-2: #1a1a21;
+  --cream: #f4f1ea;
+  --muted: #9a968e;
+  --accent: #c9a24b;
+  --accent-strong: #e0bc6a;
+  --accent-soft: rgba(201, 162, 75, 0.12);
+  --hairline: rgba(244, 241, 234, 0.1);
+  --hairline-strong: rgba(244, 241, 234, 0.2);
+
+  /* Type scale (fluid) */
+  --text-hero: clamp(2.75rem, 8.5vw, 7.5rem);
+  --text-h2: clamp(2rem, 5.2vw, 4.5rem);
+  --text-h3: clamp(1.5rem, 3vw, 2.5rem);
+  --text-lead: clamp(1.063rem, 1.6vw, 1.375rem);
+  --text-body: clamp(0.938rem, 1.1vw, 1.063rem);
+  --text-eyebrow: clamp(0.688rem, 0.9vw, 0.75rem);
+
+  /* Rhythm */
+  --section-y: clamp(6rem, 14vh, 11rem);
+  --gutter: clamp(1.25rem, 4.5vw, 5rem);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-luxe: cubic-bezier(0.65, 0.05, 0, 1);
+  --dur-fast: 0.35s;
+  --dur-base: 0.7s;
+  --dur-slow: 1.2s;
+
+  /* Chrome */
+  --header-h: 5.5rem;
+  --radius-pill: 999px;
+  --z-canvas: 0;
+  --z-content: 10;
+  --z-header: 60;
+  --z-menu: 70;
+  --z-transition: 80;
+  --z-preloader: 90;
+  --z-grain: 100;
+  --z-cursor: 110;
+}

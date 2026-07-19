@@ -1,0 +1,7 @@
+# Generated media — fetched via `npm run fetch:assets` on the dev machine
+assets/hero/*.mp4
+assets/hero/*.webp
+assets/hero/*-raw.png
+assets/showreel/*.mp4
+assets/work/*.webp
+assets/work/*-raw.png
