@@ -635,12 +635,32 @@ if (motionOn) {
       track.appendChild(li);
     });
   }
+  /* keep the card nearest to the viewport centre sharp, blur the others */
+  let centerRaf = 0;
+  function updateCenter() {
+    centerRaf = 0;
+    const mid = track.getBoundingClientRect().left + track.clientWidth / 2;
+    let best = null, bestDist = Infinity;
+    $$(".review-card", track).forEach((card) => {
+      const r = card.getBoundingClientRect();
+      const d = Math.abs(r.left + r.width / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = card; }
+    });
+    $$(".review-card", track).forEach((c) => c.classList.toggle("is-center", c === best));
+  }
+  function queueCenter() {
+    if (!centerRaf) centerRaf = requestAnimationFrame(updateCenter);
+  }
+
   render();
-  document.addEventListener("cw:lang", render);
+  updateCenter();
+  track.addEventListener("scroll", queueCenter, { passive: true });
+  addEventListener("resize", queueCenter, { passive: true });
+  document.addEventListener("cw:lang", () => { render(); updateCenter(); });
 
   const step = () => {
     const card = $(".review-card", track);
-    return card ? card.getBoundingClientRect().width + 24 : 400;
+    return card ? card.getBoundingClientRect().width + 24 : 420;
   };
   $("#rev-prev").addEventListener("click", () => track.scrollBy({ left: -step(), behavior: motionOn ? "smooth" : "auto" }));
   $("#rev-next").addEventListener("click", () => track.scrollBy({ left: step(), behavior: motionOn ? "smooth" : "auto" }));
