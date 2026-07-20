@@ -473,37 +473,84 @@ if (motionOn && finePointer) {
 }
 
 /* ─────────── craft motifs ─────────── */
-if (motionOn) {
-  /* web: planes assemble on entry, and re-flow (Flip) on hover: the layout rebuilds itself */
-  const planes = $$(".cvw-plane");
-  gsap.from(planes, {
-    x: () => gsap.utils.random(-60, 60),
-    y: () => gsap.utils.random(-40, 40),
-    rotation: () => gsap.utils.random(-10, 10),
-    opacity: 0,
-    duration: 0.9, stagger: 0.08, ease: "power3.out",
-    scrollTrigger: { trigger: ".craft-web", start: "top 78%", once: true }
-  });
-  const layoutA = [
-    { left: "12%", top: "14%", width: "42%", height: "26%" },
-    { left: "12%", top: "46%", width: "26%", height: "40%" },
-    { left: "44%", top: "46%", width: "44%", height: "18%" },
-    { left: "60%", top: "14%", width: "28%", height: "26%" }
-  ];
-  const layoutB = [
-    { left: "12%", top: "14%", width: "26%", height: "72%" },
-    { left: "44%", top: "14%", width: "44%", height: "30%" },
-    { left: "44%", top: "50%", width: "20%", height: "36%" },
-    { left: "70%", top: "50%", width: "18%", height: "36%" }
-  ];
-  let alt = false;
-  $(".craft-web .craft-visual").addEventListener("pointerenter", () => {
-    const state = Flip.getState(planes);
-    alt = !alt;
-    (alt ? layoutB : layoutA).forEach((pos, i) => Object.assign(planes[i].style, pos));
-    Flip.from(state, { duration: 0.7, ease: "expo.out", absolute: false });
-  });
+/* ─────────── interactive particle field (Sites web craft) ───────────
+ * A living grid of dots: idle wave, fluid cursor repulsion, click shockwave. */
+(function particleField() {
+  const wrap = $(".craft-web .cv-web");
+  const canvas = $("#cv-particles");
+  if (!wrap || !canvas) return;
+  const ctx = canvas.getContext("2d");
+  const ACCENT = "#2E5CFF";
+  let dots = [], w = 0, h = 0, raf = 0, t = 0;
+  const px = { x: -1e4, y: -1e4 };
 
+  function build() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = wrap.clientWidth; h = wrap.clientHeight;
+    if (!w || !h) return;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    dots = [];
+    const gap = 26;
+    for (let y = gap; y < h - gap / 2; y += gap)
+      for (let x = gap; x < w - gap / 2; x += gap)
+        dots.push({ hx: x, hy: y, x, y, vx: 0, vy: 0, a: (((x + y) / gap) | 0) % 9 === 0 });
+  }
+
+  function draw(animated) {
+    ctx.clearRect(0, 0, w, h);
+    for (const d of dots) {
+      if (animated) {
+        const dx = d.x - px.x, dy = d.y - px.y, d2 = dx * dx + dy * dy;
+        if (d2 < 16900) {
+          const dist = Math.sqrt(d2) || 1, f = ((130 - dist) / 130) * 2.4;
+          d.vx += (dx / dist) * f; d.vy += (dy / dist) * f;
+        }
+        const wob = Math.sin(t * 1.5 + d.hx * 0.03 + d.hy * 0.02) * 0.7;
+        d.vx += (d.hx - d.x) * 0.06; d.vy += (d.hy + wob - d.y) * 0.06;
+        d.vx *= 0.86; d.vy *= 0.86;
+        d.x += d.vx; d.y += d.vy;
+      }
+      const disp = Math.min(1, Math.hypot(d.x - d.hx, d.y - d.hy) / 42);
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, (d.a ? 2.6 : 1.8) + disp * 1.7, 0, 6.2832);
+      ctx.fillStyle = d.a ? ACCENT : `rgba(40, 45, 66, ${0.24 + disp * 0.6})`;
+      ctx.fill();
+    }
+  }
+
+  function loop() { t += 0.016; draw(true); raf = requestAnimationFrame(loop); }
+  function start() { if (!raf && motionOn) raf = requestAnimationFrame(loop); }
+  function stop() { cancelAnimationFrame(raf); raf = 0; }
+
+  build();
+  draw(false);
+  addEventListener("resize", () => { build(); if (!raf) draw(false); }, { passive: true });
+
+  if (motionOn) {
+    ScrollTrigger.create({
+      trigger: wrap, start: "top bottom", end: "bottom top",
+      onToggle: (self) => (self.isActive ? start() : stop())
+    });
+    if (finePointer) {
+      wrap.addEventListener("pointermove", (e) => {
+        const r = wrap.getBoundingClientRect();
+        px.x = e.clientX - r.left; px.y = e.clientY - r.top;
+      });
+      wrap.addEventListener("pointerleave", () => { px.x = -1e4; px.y = -1e4; });
+      wrap.addEventListener("click", (e) => {
+        const r = wrap.getBoundingClientRect();
+        const cx = e.clientX - r.left, cy = e.clientY - r.top;
+        for (const d of dots) {
+          const dx = d.x - cx, dy = d.y - cy, dist = Math.hypot(dx, dy) || 1;
+          if (dist < 240) { const f = ((240 - dist) / 240) * 13; d.vx += (dx / dist) * f; d.vy += (dy / dist) * f; }
+        }
+      });
+    }
+  }
+})();
+
+if (motionOn) {
   /* film: bars draw in, scrub line follows section progress like an edit timeline */
   gsap.from(".cvf-bar", {
     scaleY: 0, transformOrigin: "top",
