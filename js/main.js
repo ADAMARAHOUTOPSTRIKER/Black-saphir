@@ -140,7 +140,7 @@ function openCase(p, trigger) {
   openProject = p;
   lastFocus = trigger || document.activeElement;
   fillCase(p);
-  hideGhost();
+  hideWorkBg();
   caseEl.classList.add("is-open");
   caseEl.setAttribute("aria-hidden", "false");
   if (lenis) lenis.stop();
@@ -397,64 +397,79 @@ if (motionOn) {
   });
 }
 
-/* ─────────── work hover ghost (desktop) ─────────── */
-const ghost = $("#work-ghost");
-const ghostMediaCache = new Map();
-let ghostVisible = false;
+/* ─────────── work section: 3 interactive effects ───────────
+ * 1. Background takeover: the hovered project's real capture floods the section.
+ * 2. Text scramble: names and nav links decode on hover.
+ * 3. Velocity skew: the index leans with scroll speed. */
+const workBg = $("#work-bg");
+const wbVideo = $("#wb-video");
+const wbImg = $("#wb-img");
 
-function ghostMediaFor(p) {
-  if (ghostMediaCache.has(p.id)) return ghostMediaCache.get(p.id);
-  let el;
-  if (p.loop) {
-    el = document.createElement("video");
-    el.src = p.loop; el.muted = true; el.loop = true; el.playsInline = true;
-  } else if (p.cover) {
-    el = document.createElement("img");
-    el.src = p.cover; el.alt = "";
-  } else {
-    el = document.createElement("span");
-    el.className = "wg-visit";
-    el.textContent = lang === "fr" ? "Visiter le site ↗" : "Visit the site ↗";
-  }
-  ghostMediaCache.set(p.id, el);
-  return el;
-}
-function hideGhost() {
-  if (!ghostVisible) return;
-  ghostVisible = false;
-  gsap.to(ghost, { opacity: 0, scale: 0.94, duration: 0.25, ease: "power2.in" });
-  $$("video", ghost).forEach((v) => v.pause());
+function hideWorkBg() {
+  workBg.classList.remove("is-on");
+  wbVideo.pause();
 }
 
 if (motionOn && finePointer) {
-  const gx = gsap.quickTo(ghost, "x", { duration: 0.5, ease: "power3.out" });
-  const gy = gsap.quickTo(ghost, "y", { duration: 0.5, ease: "power3.out" });
-  const gr = gsap.quickTo(ghost, "rotation", { duration: 0.6, ease: "power3.out" });
-  let lastX = 0;
-
-  workIndex.addEventListener("pointermove", (e) => {
-    gx(e.clientX + 26);
-    gy(e.clientY - ghost.offsetHeight / 2);
-    gr(gsap.utils.clamp(-7, 7, (e.clientX - lastX) * 0.35));
-    lastX = e.clientX;
-  });
-
+  /* 1 — background takeover */
   workIndex.addEventListener("pointerover", (e) => {
     const link = e.target.closest(".work-link");
     if (!link) return;
     const p = CONVERS_DATA.projects.find((x) => x.id === link.dataset.project);
     if (!p) return;
-    ghost.style.setProperty("--p-hue", p.hue);
-    $("#wg-tag").textContent = p.name;
-    const wgm = $("#wg-media");
-    wgm.replaceChildren(ghostMediaFor(p));
-    $$("video", wgm).forEach((v) => v.play().catch(() => {}));
-    if (!ghostVisible) {
-      ghostVisible = true;
-      gsap.fromTo(ghost, { scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" });
+    if (p.loop) {
+      wbImg.hidden = true;
+      if (wbVideo.dataset.src !== p.loop) { wbVideo.src = p.loop; wbVideo.dataset.src = p.loop; }
+      wbVideo.hidden = false;
+      wbVideo.play().catch(() => {});
+    } else if (p.cover) {
+      wbVideo.hidden = true; wbVideo.pause();
+      wbImg.src = p.cover; wbImg.hidden = false;
+    } else {
+      hideWorkBg();
+      return;
+    }
+    workBg.classList.add("is-on");
+  });
+  workIndex.addEventListener("pointerleave", hideWorkBg);
+
+  /* 2 — text scramble (Matrix-style decode) */
+  const SCRAMBLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#/\\_0123456789";
+  function scramble(el) {
+    const node = el.firstChild;
+    if (!node || node.nodeType !== 3 || el._scrambling) return;
+    el._scrambling = true;
+    const original = node.nodeValue;
+    let frame = 0;
+    const total = Math.max(14, original.length * 2);
+    (function tick() {
+      frame++;
+      const reveal = Math.floor(original.length * (frame / total));
+      let out = original.slice(0, reveal);
+      for (let i = reveal; i < original.length; i++) {
+        out += original[i] === " " ? " " : SCRAMBLE[(Math.random() * SCRAMBLE.length) | 0];
+      }
+      node.nodeValue = out;
+      if (frame < total) requestAnimationFrame(tick);
+      else { node.nodeValue = original; el._scrambling = false; }
+    })();
+  }
+  workIndex.addEventListener("pointerover", (e) => {
+    const name = e.target.closest(".work-link")?.querySelector(".work-name");
+    if (name) scramble(name);
+  });
+  $$(".head-nav a, .mm-nav a").forEach((a) =>
+    a.addEventListener("pointerenter", () => scramble(a)));
+
+  /* 3 — velocity skew on the index */
+  ScrollTrigger.create({
+    trigger: "#realisations", start: "top bottom", end: "bottom top",
+    onUpdate: (self) => {
+      const lean = gsap.utils.clamp(-6, 6, self.getVelocity() / -350);
+      gsap.to(workIndex, { skewY: lean, duration: 0.25, ease: "power2.out", overwrite: "auto" });
+      gsap.to(workIndex, { skewY: 0, duration: 0.7, delay: 0.12, ease: "power3.out", overwrite: false });
     }
   });
-  workIndex.addEventListener("pointerleave", hideGhost);
 }
 
 /* ─────────── craft motifs ─────────── */

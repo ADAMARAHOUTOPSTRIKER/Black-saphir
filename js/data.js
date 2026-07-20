@@ -70,24 +70,6 @@ const CONVERS_DATA = {
       loop: "assets/work/marsa-loop.webm"
     },
     {
-      id: "opticvision",
-      name: "OpticVision",
-      url: "https://optic-steel.vercel.app/",
-      hue: "var(--p-optic)",
-      sector: { fr: "Optique & lunetterie", en: "Eyewear" },
-      services: {
-        fr: ["Site de marque", "Film produit", "Design d'interface"],
-        en: ["Brand website", "Product film", "Interface design"]
-      },
-      desc: {
-        fr: "Une maison d'optique suspendue dans les nuages. La monture y devient un objet rare.",
-        en: "An eyewear house suspended in the clouds. The frame becomes a rare object."
-      },
-      quote: "La vision, sculptée comme un objet rare.",
-      cover: null,  // OpticVision: live link only, per client decision
-      loop: null
-    },
-    {
       id: "sentia",
       name: "Sentia",
       url: "https://sentia-pi.vercel.app/",
@@ -148,7 +130,7 @@ const I18N = {
     hero_cta: "Voir les réalisations",
     reel_hint: "Showreel",
     work_over: "Réalisations",
-    work_title: "Quatre marques, quatre expériences.",
+    work_title: "Trois marques, trois expériences.",
     work_note: "Chaque site est en ligne. Survolez, entrez, visitez.",
     srv_title: "Deux métiers, une même exigence.",
     srv1_t: "Sites web",
@@ -188,7 +170,7 @@ const I18N = {
     hero_cta: "See the work",
     reel_hint: "Showreel",
     work_over: "Selected work",
-    work_title: "Four brands, four experiences.",
+    work_title: "Three brands, three experiences.",
     work_note: "Every site is live. Hover, enter, visit.",
     srv_title: "Two crafts, one standard.",
     srv1_t: "Websites",
