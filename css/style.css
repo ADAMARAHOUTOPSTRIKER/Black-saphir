@@ -286,46 +286,53 @@ body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
 .atmos-grain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.05; pointer-events: none; }
 .hero-inner {
   position: relative; z-index: 1;
-  width: 100%; max-width: 1600px;
-  display: flex; flex-direction: column; align-items: center;
+  width: 100%; height: 100%; max-width: 1600px;
 }
+/* wordmark centered vertically; the laptop overlaps its lower half (OPPO layout) */
 .hero-title {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(3.4rem, 12.8vw, 12.5rem);
   line-height: 0.92; letter-spacing: -0.025em;
   text-transform: uppercase;
-  position: relative; z-index: 1;
-  margin-top: clamp(1rem, 6svh, 5rem);
+  position: absolute; left: 50%; top: 39%;
+  translate: -50% -50%;
+  width: 100%; z-index: 1; margin: 0;
 }
 .ht-line { display: block; }
 .ht-sub { font-size: var(--t-display-s); font-weight: 500; letter-spacing: 0.14em; margin-top: var(--sp-3); color: var(--c-ink-2); }
 .ht-sub .amp { color: var(--c-accent); }
-/* the MacBook floats centered IN FRONT of the title (OPPO-style overlap) */
-.hero-mac-wrap {
-  position: absolute;
-  left: 50%; top: 46%;
-  translate: -50% -50%;
-  width: clamp(360px, 58vw, 1040px);
-  z-index: 2;
-  pointer-events: none;
-  will-change: transform;
+/* the MacBook floats centered IN FRONT of the wordmark's lower half.
+   The anchor does the centering (CSS only); GSAP animates the inner wrap, so
+   the scroll transform never fights the centering transform.
+   Height-capped (not width) so the real cutout's aspect ratio can't push it
+   down onto the CTAs, whatever it turns out to be. */
+.hero-mac-anchor {
+  position: absolute; left: 0; right: 0; top: 48%;
+  transform: translateY(-50%);
+  z-index: 2; pointer-events: none;
+  display: flex; justify-content: center;
 }
+.hero-mac-wrap { will-change: transform; }
 .hero-mac {
-  width: 100%;
-  filter: drop-shadow(0 34px 64px oklch(30% 0.02 262 / 0.2));
+  height: auto; width: auto;
+  max-height: 39svh; max-width: 80vw;
+  display: block;
+  filter: drop-shadow(0 34px 64px oklch(30% 0.02 262 / 0.22));
   will-change: transform;
 }
 .hero-tail {
-  position: relative; z-index: 3;
-  margin-top: auto;
-  padding-top: clamp(16svh, 34svh, 40svh);
+  position: absolute; left: 50%; bottom: clamp(2rem, 6svh, 4.5rem);
+  translate: -50% 0;
+  z-index: 3; width: 100%;
   display: flex; flex-direction: column; align-items: center;
 }
 .hero-sub { max-width: 44ch; color: var(--c-ink-2); }
 .hero-ctas { display: flex; align-items: center; justify-content: center; gap: var(--sp-8); margin-top: var(--sp-6); flex-wrap: wrap; }
 @media (max-width: 1023px) {
-  .hero-mac-wrap { width: min(72vw, 460px); top: 42%; }
-  .hero-tail { padding-top: 12svh; }
+  .hero-mac { max-height: 30svh; max-width: 82vw; }
+  .hero-mac-anchor { top: 44%; }
+  .hero-title { top: 37%; }
+  .hero-tail { bottom: clamp(1.5rem, 5svh, 4rem); }
 }
 
 /* ═══════════════ REEL ═══════════════ */

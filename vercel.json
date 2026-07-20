@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "",
+  "installCommand": "npm install",
   "buildCommand": "node scripts/fetch-assets.mjs",
   "outputDirectory": ".",
   "headers": [

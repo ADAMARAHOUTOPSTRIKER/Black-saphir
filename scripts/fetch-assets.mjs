@@ -40,6 +40,25 @@ const FILES = [
   ["assets/img/hero-mac.png", `${CDN}/hf_20260720_200603_1ee16680-9857-433e-b9b0-0370396a7f51.png`]
 ];
 
+/* Files that must be tightly cropped to their opaque content after download.
+ * The hero MacBook cutout keeps transparent margins from its 16:9 source frame,
+ * with the laptop off-center; trimming makes it centered so the CSS can center
+ * it under the wordmark. Uses sharp if available; no-ops gracefully otherwise. */
+const TRIM = new Set(["assets/img/hero-mac.png"]);
+
+async function trim(path) {
+  try {
+    const { default: sharp } = await import("sharp");
+    const tmp = path + ".trim.png";
+    await sharp(path).trim().toFile(tmp);
+    const { renameSync } = await import("node:fs");
+    renameSync(tmp, path);
+    console.log(`trimmed ${path}`);
+  } catch (err) {
+    console.warn(`trim skipped for ${path}: ${err.message ?? err}`);
+  }
+}
+
 let fetched = 0, skipped = 0, failed = 0;
 
 for (const [dest, url] of FILES) {
@@ -51,6 +70,7 @@ for (const [dest, url] of FILES) {
     const res = await fetch(url);
     if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
     await pipeline(Readable.fromWeb(res.body), createWriteStream(path));
+    if (TRIM.has(dest)) await trim(path);
     fetched++;
     console.log(`fetched ${dest}`);
   } catch (err) {

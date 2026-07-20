@@ -357,12 +357,12 @@ if (!motionOn || seen) {
       /* tall-track + CSS sticky: the hero content holds while the Mac scrubs in */
       $("#hero").classList.add("has-scrollmac");
       gsap.fromTo(wrap,
-        { yPercent: 76, scale: 0.5, autoAlpha: 0 },
+        { yPercent: 82, scale: 0.46, autoAlpha: 0 },
         { yPercent: 0, scale: 1, autoAlpha: 1, ease: "none",
           scrollTrigger: {
             trigger: "#hero",
             start: "top top",
-            end: "bottom 88%",
+            end: "top -55%",   // finishes early, then holds in place while the stage stays pinned
             scrub: 0.5
           } });
       /* idle float on the inner image, independent from the scrubbed wrapper */

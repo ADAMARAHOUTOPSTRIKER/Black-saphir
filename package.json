@@ -1,0 +1,12 @@
+{
+  "name": "convers-websites",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Convers-Websites — site vitrine du studio (statique).",
+  "scripts": {
+    "fetch:assets": "node scripts/fetch-assets.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  }
+}
