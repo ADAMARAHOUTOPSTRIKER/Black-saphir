@@ -268,11 +268,9 @@ function heroIntro(instant) {
   try {
     subLines.forEach((l) => (l.style.overflow = "clip"));
     const main = new SplitText(".ht-main", { type: "chars" });
-    const sub  = new SplitText(".ht-sub",  { type: "chars" });
     const tl = gsap.timeline();
-    tl.from(main.chars, { yPercent: 112, duration: 1, stagger: 0.035, ease: "expo.out" })
-      .from(sub.chars,  { yPercent: 112, duration: 0.8, stagger: 0.012, ease: "expo.out" }, "-=0.7")
-      .from([".hero-sub", ".hero-ctas"], { y: 26, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", clearProps: "all" }, "-=0.5")
+    tl.from(main.chars, { yPercent: 112, duration: 1, stagger: 0.03, ease: "expo.out" })
+      .from([".hero-sub", ".hero-ctas"], { y: 26, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", clearProps: "all" }, "-=0.55")
       .add(() => subLines.forEach((l) => (l.style.overflow = "")));
   } catch (err) {
     gsap.from(".hero-inner", { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });

@@ -37,14 +37,15 @@ const FILES = [
   ["assets/video/craft-film-montre.mp4", `${CDN}/hf_20260719_225829_7a2119ca-7702-4439-a29e-88c2616ad93b.mp4`],
   // hero MacBook cutout, front view for the centered composition (client-stats
   // dashboard, generated against the atmosphere still, transparent bg)
-  ["assets/img/hero-mac.png", `${CDN}/hf_20260720_200603_1ee16680-9857-433e-b9b0-0370396a7f51.png`]
+  // front-view MacBook cutout; versioned filename busts the year-long immutable cache
+  ["assets/img/hero-mac-front.png", `${CDN}/hf_20260720_200603_1ee16680-9857-433e-b9b0-0370396a7f51.png`]
 ];
 
 /* Files that must be tightly cropped to their opaque content after download.
  * The hero MacBook cutout keeps transparent margins from its 16:9 source frame,
  * with the laptop off-center; trimming makes it centered so the CSS can center
  * it under the wordmark. Uses sharp if available; no-ops gracefully otherwise. */
-const TRIM = new Set(["assets/img/hero-mac.png"]);
+const TRIM = new Set(["assets/img/hero-mac-front.png"]);
 
 async function trim(path) {
   try {

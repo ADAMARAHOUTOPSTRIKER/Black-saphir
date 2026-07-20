@@ -291,16 +291,15 @@ body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
 /* wordmark centered vertically; the laptop overlaps its lower half (OPPO layout) */
 .hero-title {
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(3.4rem, 12.8vw, 12.5rem);
-  line-height: 0.92; letter-spacing: -0.025em;
+  font-size: clamp(1.5rem, 9vw, 9.5rem);
+  line-height: 0.95; letter-spacing: -0.03em;
   text-transform: uppercase;
-  position: absolute; left: 50%; top: 39%;
+  position: absolute; left: 50%; top: 40%;
   translate: -50% -50%;
   width: 100%; z-index: 1; margin: 0;
+  white-space: nowrap;
 }
 .ht-line { display: block; }
-.ht-sub { font-size: var(--t-display-s); font-weight: 500; letter-spacing: 0.14em; margin-top: var(--sp-3); color: var(--c-ink-2); }
-.ht-sub .amp { color: var(--c-accent); }
 /* the MacBook floats centered IN FRONT of the wordmark's lower half.
    The anchor does the centering (CSS only); GSAP animates the inner wrap, so
    the scroll transform never fights the centering transform.
@@ -329,9 +328,10 @@ body[data-motion="off"] .wa-float { opacity: 1; scale: 1; translate: 0 0; }
 .hero-sub { max-width: 44ch; color: var(--c-ink-2); }
 .hero-ctas { display: flex; align-items: center; justify-content: center; gap: var(--sp-8); margin-top: var(--sp-6); flex-wrap: wrap; }
 @media (max-width: 1023px) {
-  .hero-mac { max-height: 30svh; max-width: 82vw; }
+  /* narrow screens can't do the split; stack the title above the laptop */
+  .hero-mac { max-height: 22svh; max-width: 76vw; }
   .hero-mac-anchor { top: 44%; }
-  .hero-title { top: 37%; }
+  .hero-title { top: 24%; font-size: clamp(1.9rem, 9.5vw, 4rem); }
   .hero-tail { bottom: clamp(1.5rem, 5svh, 4rem); }
 }
 
