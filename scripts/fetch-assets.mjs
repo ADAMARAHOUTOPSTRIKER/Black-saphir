@@ -35,8 +35,9 @@ const FILES = [
   ["assets/img/craft-film-montre-poster.webp", `${CDN}/hf_20260719_225831_df975ee4-0e9b-46c5-8deb-027fc57c6e39_min.webp`],
   // watch demo film (10 s, 720p, cinematic sound; chronograph assembles, fires, disassembles)
   ["assets/video/craft-film-montre.mp4", `${CDN}/hf_20260719_225829_7a2119ca-7702-4439-a29e-88c2616ad93b.mp4`],
-  // hero MacBook cutout (client-stats dashboard, generated against the atmosphere still, transparent bg)
-  ["assets/img/hero-mac.png", `${CDN}/hf_20260719_235457_c1b34d91-f644-46ab-bd9c-b61313c10ea8.png`]
+  // hero MacBook cutout, front view for the centered composition (client-stats
+  // dashboard, generated against the atmosphere still, transparent bg)
+  ["assets/img/hero-mac.png", `${CDN}/hf_20260720_200603_1ee16680-9857-433e-b9b0-0370396a7f51.png`]
 ];
 
 let fetched = 0, skipped = 0, failed = 0;

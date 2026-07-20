@@ -343,24 +343,37 @@ if (!motionOn || seen) {
     }
   }
 
-  /* optional MacBook stats visual, right side of the hero (manifest-driven) */
+  /* MacBook stats visual, centered in front of the title, arriving with scroll
+     (pinned scrub on desktop, simple scrub on mobile; manifest-driven) */
   const macSrc = CONVERS_DATA.media.heroMac;
-  if (macSrc && matchMedia("(min-width: 1024px)").matches) {
+  if (macSrc) {
     fetch(macSrc, { method: "HEAD" }).then((r) => {
       if (!r.ok) return;
+      const wrap = $("#hero-mac-wrap");
       const mac = $("#hero-mac");
       mac.src = macSrc;
       mac.hidden = false;
-      if (motionOn) {
-        gsap.from(mac, { y: 60, opacity: 0, duration: 1.1, delay: 0.9, ease: "power3.out" });
-        gsap.to(mac, { y: -14, duration: 6, yoyo: true, repeat: -1, ease: "sine.inOut", delay: 2 });
-        if (finePointer) {
-          const mx = gsap.quickTo(mac, "x", { duration: 1.4, ease: "power3.out" });
-          $("#hero").addEventListener("pointermove", (e) => {
-            mx((e.clientX / innerWidth - 0.5) * -18);
-          });
-        }
+      if (!motionOn) return;
+      /* tall-track + CSS sticky: the hero content holds while the Mac scrubs in */
+      $("#hero").classList.add("has-scrollmac");
+      gsap.fromTo(wrap,
+        { yPercent: 76, scale: 0.5, autoAlpha: 0 },
+        { yPercent: 0, scale: 1, autoAlpha: 1, ease: "none",
+          scrollTrigger: {
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom 88%",
+            scrub: 0.5
+          } });
+      /* idle float on the inner image, independent from the scrubbed wrapper */
+      gsap.to(mac, { y: -13, duration: 5.5, yoyo: true, repeat: -1, ease: "sine.inOut" });
+      if (finePointer) {
+        const mx = gsap.quickTo(mac, "x", { duration: 1.4, ease: "power3.out" });
+        $("#hero").addEventListener("pointermove", (e) => {
+          mx((e.clientX / innerWidth - 0.5) * -16);
+        });
       }
+      ScrollTrigger.refresh();
     }).catch(() => {});
   }
 
